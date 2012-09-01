@@ -1,99 +1,206 @@
-  /* Base Type Styles Using Modular Scale ---------------------- */
+//
+// Typography
+// --------------------------------------------------
 
-  body,div,dl,dt,dd,ul,ol,li,h1,h2,h3,h4,h5,h6,pre,form,fieldset,p,blockquote,th,td {
-    margin:0;
-    padding:0;
-    font-size: ms(0);
+
+// Body text
+// -------------------------
+
+p {
+  margin: 0 0 $baseLineHeight / 2;
+}
+.lead {
+  margin-bottom: $baseLineHeight;
+  font-size: 20px;
+  font-weight: 200;
+  line-height: $baseLineHeight * 1.5;
+}
+
+
+// Emphasis & misc
+// -------------------------
+
+small {
+  font-size: 85%; // Ex: 14px base font * 85% = about 12px
+}
+strong {
+  font-weight: bold;
+}
+em {
+  font-style: italic;
+}
+cite {
+  font-style: normal;
+}
+.muted {
+  color: $grayLight;
+}
+
+
+// Headings
+// -------------------------
+
+h1, h2, h3, h4, h5, h6 {
+  margin: ($baseLineHeight / 2) 0;
+  font-family: $headingsFontFamily;
+  font-weight: $headingsFontWeight;
+  line-height: 1;
+  color: $headingsColor;
+  text-rendering: optimizelegibility; // Fix the character spacing for headings
+  small {
+    font-weight: normal;
+    line-height: 1;
+    color: $grayLight;
   }
+}
+h1 { font-size: 36px; line-height: 40px; }
+h2 { font-size: 30px; line-height: 40px; }
+h3 { font-size: 24px; line-height: 40px; }
+h4 { font-size: 18px; line-height: 20px; }
+h5 { font-size: 14px; line-height: 20px; }
+h6 { font-size: 12px; line-height: 20px; }
 
-  p { font-family: $bodyFontFamily; font-weight: $bodyFontWeight; font-size: ms(0); line-height: 1.6; margin-bottom: ms(1);
-    &.lead { font-size: ms(0) * 1.25; line-height: 1.6; margin-bottom: ms(1); }
+h1 small { font-size: 24px; }
+h2 small { font-size: 18px; }
+h3 small { font-size: 14px; }
+h4 small { font-size: 14px; }
+
+
+// Page header
+// -------------------------
+
+.page-header {
+  padding-bottom: ($baseLineHeight / 2) - 1;
+  margin: $baseLineHeight 0 ($baseLineHeight * 1.5);
+  border-bottom: 1px solid $grayLighter;
+}
+
+
+
+// Lists
+// --------------------------------------------------
+
+// Unordered and Ordered lists
+ul, ol {
+  padding: 0;
+  margin: 0 0 $baseLineHeight / 2 25px;
+}
+ul ul,
+ul ol,
+ol ol,
+ol ul {
+  margin-bottom: 0;
+}
+li {
+  line-height: $baseLineHeight;
+}
+ul.unstyled,
+ol.unstyled {
+  margin-left: 0;
+  list-style: none;
+}
+
+// Description Lists
+dl {
+  margin-bottom: $baseLineHeight;
+}
+dt,
+dd {
+  line-height: $baseLineHeight;
+}
+dt {
+  font-weight: bold;
+}
+dd {
+  margin-left: $baseLineHeight / 2;
+}
+// Horizontal layout (like forms)
+.dl-horizontal {
+  dt {
+    float: left;
+    width: 120px;
+    clear: left;
+    text-align: right;
+    @include text-overflow();
   }
-  aside p { font-size: ms(0) - 1; line-height: 1.35; font-style: italic; }
-
-  h1, h2, h3, h4, h5, h6 {
-    font-family: $headerFontFamily;
-    font-weight: $headerFontWeight;
-    text-rendering: optimizeLegibility;
-    line-height: 1.1;
-    margin-bottom: ms(0);
-    margin-top: ms(0);
-    small { font-size: 60%; color: lighten($headerFontColor, 30%); line-height: 0; }
+  dd {
+    margin-left: 130px;
   }
+}
 
-  h1 { font-size: ms(5); }
-  h2 { font-size: ms(4); }
-  h3 { font-size: ms(3); }
-  h4 { font-size: ms(2); }
-  h5 { font-size: ms(1); }
-  h6 { font-size: ms(0); }
+// MISC
+// ----
 
-  hr { border: solid #ddd; border-width: 1px 0 0; clear: both; margin: 22px 0 21px; height: 0; }
+// Horizontal rules
+hr {
+  margin: $baseLineHeight 0;
+  border: 0;
+  border-top: 1px solid $hrBorder;
+  border-bottom: 1px solid $white;
+}
 
-  .subheader { line-height: 1.3; color: lighten($headerFontColor, 30%); font-weight: 300; margin-bottom: ms(1); }
+// Abbreviations and acronyms
+abbr[title] {
+  cursor: help;
+  border-bottom: 1px dotted $grayLight;
+}
+abbr.initialism {
+  font-size: 90%;
+  text-transform: uppercase;
+}
 
-  em, i { font-style: italic; line-height: inherit; }
-  strong, b { font-weight: bold; line-height: inherit; }
-  small { font-size: 60%; line-height: inherit; }
-  code { font-weight: bold; background: $highlightColor; }
-
-  /* Lists ---------------------- */
-  ul, ol { font-size: ms(0); line-height: 1.6; margin-bottom: ms(1); list-style-position: inside; }
-  ul {
-    li {
-      ul, ol { margin-left: 20px; margin-bottom: 0; }
+// Blockquotes
+blockquote {
+  padding: 0 0 0 15px;
+  margin: 0 0 $baseLineHeight;
+  border-left: 5px solid $grayLighter;
+  p {
+    margin-bottom: 0;
+    @include font-shorthand(16px,300,$baseLineHeight * 1.25);
+  }
+  small {
+    display: block;
+    line-height: $baseLineHeight;
+    color: $grayLight;
+    &:before {
+      content: '\2014 \00A0';
     }
-    &.square, &.circle, &.disc { margin-left: ms(1); }
-    &.square { list-style-type: square;
-      li ul { list-style: inherit; }
-    }
-    &.circle { list-style-type: circle;
-      li ul { list-style: inherit; }
-    }
-    &.disc { list-style-type: disc;
-      li ul { list-style: inherit; }
-    }
-    &.no-bullet { list-style: none; }
-    &.large li { line-height: 21px; }
-  }
-  ol {
-    li {
-      ul, ol { margin-left: 20px; margin-bottom: 0; }
-    }
   }
 
-  /* Blockquotes ---------------------- */
-  blockquote, blockquote p { line-height: 1.5; color: lighten($headerFontColor, 30%); }
-  blockquote { margin: 0 0 ms(1); padding: 9px 20px 0 19px; border-left: 1px solid #ddd;
-    cite { display: block; font-size: ms(0) - 1; color: lighten($headerFontColor, 20%);
-      &:before { content: "\2014 \0020"; }
-      a, a:visited { color: lighten($headerFontColor, 20%); }
+  // Float right with text-align: right
+  &.pull-right {
+    float: right;
+    padding-right: 15px;
+    padding-left: 0;
+    border-right: 5px solid $grayLighter;
+    border-left: 0;
+    p,
+    small {
+      text-align: right;
+    }
+    small {
+      &:before {
+        content: '';
+      }
+      &:after {
+        content: '\00A0 \2014';
+      }
     }
   }
+}
 
-  abbr, acronym { text-transform: uppercase; font-size: 90%; color: $headerFontColor; border-bottom: 1px solid #ddd; cursor: help; }
-  abbr { text-transform: none; }
+// Quotes
+q:before,
+q:after,
+blockquote:before,
+blockquote:after {
+  content: "";
+}
 
-  /*
-   * Print styles.
-   *
-   * Inlined to avoid required HTTP connection: www.phpied.com/delay-loading-your-print-css/
-   * Credit to Paul Irish and HTML5 Boilerplate (html5boilerplate.com)
-  */
-  .print-only { display: none !important; }
-  @media print {
-    * { background: transparent !important; color: black !important; box-shadow:none !important; text-shadow: none !important; filter:none !important; -ms-filter: none !important; } /* Black prints faster: h5bp.com/s */
-    a, a:visited { text-decoration: underline; }
-    a[href]:after { content: " (" attr(href) ")"; }
-    abbr[title]:after { content: " (" attr(title) ")"; }
-    .ir a:after, a[href^="javascript:"]:after, a[href^="#"]:after { content: ""; }  /* Don't show links for images, or javascript/internal links */
-    pre, blockquote { border: 1px solid #999; page-break-inside: avoid; }
-    thead { display: table-header-group; } /* h5bp.com/t */
-    tr, img { page-break-inside: avoid; }
-    img { max-width: 100% !important; }
-    @page { margin: 0.5cm; }
-    p, h2, h3 { orphans: 3; widows: 3; }
-    h2, h3 { page-break-after: avoid; }
-    .hide-on-print { display: none !important; }
-    .print-only { display: block !important; }
-  }
+// Addresses
+address {
+  display: block;
+  margin-bottom: $baseLineHeight;
+  font-style: normal;
+  line-height: $baseLineHeight;
+}
