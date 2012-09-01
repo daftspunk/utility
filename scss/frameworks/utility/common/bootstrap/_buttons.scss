@@ -1,0 +1,16 @@
+
+// Bootstrap: Buttons
+//---------------------------------------------------
+
+@import "../../../bootstrap";
+@import "../../../bootstrap/buttons";
+
+.button { @extend .btn; }
+.button.secondary { @extend .btn-primary; }
+.button.success { @extend .btn-success; }
+.button.alert { @extend .btn-danger; }
+
+// Non standard Foundation buttons
+.button.inverse { @extend .btn-inverse; }
+.button.warning { @extend .btn-warning; }
+.button.info { @extend .btn-info; }
