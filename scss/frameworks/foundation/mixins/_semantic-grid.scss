@@ -61,6 +61,6 @@
 
   %c-base { @include columnBase(); }
 
-  @for $i from 1 through $totalColumns {
-    .c-#{$i} { @include column($i); }
-  }
+  // @for $i from 1 through $totalColumns {
+  //   .c-#{$i} { @include column($i); }
+  // }

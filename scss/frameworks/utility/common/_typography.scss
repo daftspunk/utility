@@ -1,0 +1,17 @@
+// Alignment
+.taj, .align_justify { text-align:justify; }
+.tac, .align_center { text-align:center; }
+.tal, .align_left { text-align:left; }
+.tar, .align_right { text-align:right; }
+.fl, .float_left { float:left; }
+.fr, .float_right { float:right; }
+.ttu, .uppercase { text-transform:uppercase; }
+.ttl, .lowercase { text-transform:lowercase; }
+.ttc, .capitalize { text-transform:capitalize; }
+
+
+// Patches
+//--------------------------------------------------
+
+// Foundation insists on this being inside, no idea why?
+ul, ol { list-style-position: outside; }

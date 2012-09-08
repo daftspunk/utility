@@ -1,44 +1,8 @@
 @import "app/boot";
 
-// Common
-// -------------------------------------------------- 
+@import "frameworks/foundation/common/base";
+@import "frameworks/foundation/components/grid";
+@import "frameworks/foundation/components/modules/all";
 
-/* -------------------------------------------------- 
-:: Common
------------------------------------------------------ */
-@import "frameworks/utility/common/common";
-
-
-/* -------------------------------------------------- 
-:: Forms
------------------------------------------------------ */
-//@import "frameworks/utility/common/foundation/forms";
-@import "frameworks/utility/common/bootstrap/forms";
-
-/* -------------------------------------------------- 
-:: Typography
------------------------------------------------------ */
-//@import "frameworks/utility/common/foundation/typography";
-@import "frameworks/utility/common/bootstrap/typography";
-
-/* -------------------------------------------------- 
-:: Buttons
------------------------------------------------------ */
-//@import "frameworks/utility/common/foundation/grid";
-@import "frameworks/utility/common/bootstrap/buttons";
-
-/* -------------------------------------------------- 
-:: Grid
------------------------------------------------------ */
-@import "frameworks/utility/common/foundation/grid";
-//@import "frameworks/utility/common/bootstrap/grid";
-
-/* -------------------------------------------------- 
-:: Icons
------------------------------------------------------ */
-//@import "frameworks/utility/common/foundation/icons";
-@import "frameworks/utility/common/bootstrap/icons";
-
-
-// Controls
-// -------------------------------------------------- 
+@import "frameworks/utility/common/base";
+@import "frameworks/utility/components/all";

@@ -1,11 +1,11 @@
 @import "app/boot";
 
 /* -------------------------------------------------- 
-:: Common
+:: Home
 ----------------------------------------------------- */
-@import "app/common/base";
+@import "templates/home";
 
 /* -------------------------------------------------- 
-:: Components
+:: Default
 ----------------------------------------------------- */
-@import "app/components/all";
+@import "templates/default";
