@@ -1,0 +1,14 @@
+dl.tabs {
+    &.bottom { 
+        border-bottom: none;
+        border-top: solid 1px darken($white, 10%); 
+
+        dd {
+            &.active { 
+                border-bottom: 3px solid $mainColor; 
+                margin-top: -1px; 
+                border-top: none; 
+            }
+        }
+    }
+}
