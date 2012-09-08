@@ -1,16 +1,17 @@
 // Colors
 //--------------------------------------------------
 
-$primaryColor:  #2ba6cb !default;
+$primaryColor:   #2ba6cb !default;
 $secondaryColor: #e9e9e9 !default;
-$shadeColor: #FFFFDD !default;
+$shadeColor:     #FFFFDD !default;
 
 // Typography
 //--------------------------------------------------
 
-$textFont: "Helvetica Neue", "Helvetica", Helvetica, Arial, sans-serif !default;
-$textColor: #222 !default;
-$altTextColor: #666666 !default;
+$baseLineHeight: 15px !default;
+$textFont:       "Helvetica Neue", "Helvetica", Helvetica, Arial, sans-serif !default;
+$textColor:      #222 !default;
+$altTextColor:   #666666 !default;
 
 $quietColor:   lighten($textColor, 20%) !default;
 $loudColor:    darken($textColor, 13.33%) !default;
@@ -91,12 +92,16 @@ $secondaryDark4: darken($secondaryColor, 20%) !default;
 // Buttons
 //--------------------------------------------------
 
-$buttonPrimaryColor: $secondaryLight4 !default;      // Change to a suitable primary button colour as needed.
+$buttonPrimaryColor:   $secondaryLight4 !default;      // Change to a suitable primary button colour as needed.
 $buttonSecondaryColor: $primaryLight4 !default;       // Change to a suitable secondary button colour as needed.
-$buttonWhiteColor: $grayLighter !default;
-$buttonBlackColor: $grayDark !default;
+$buttonWhiteColor:     $grayLighter !default;
+$buttonBlackColor:     $grayDark !default;
 
 // Tables
 //--------------------------------------------------
 
-$tableColor: lighten($primaryColor, 45%) !default;        // Change to a visible colour if it is not displaying
+$tableColor:            lighten($primaryColor, 45%) !default;        // Change to a visible colour if it is not displaying
+$tableBackground:       transparent !default; // overall background-color
+$tableBackgroundAccent: #f9f9f9 !default; // for striping
+$tableBackgroundHover:  #f5f5f5 !default; // for hover
+$tableBorder:           #ddd !default; // table and cell border
