@@ -16,7 +16,7 @@ $altTextColor:   #666666 !default;
 $quietColor:   lighten($textColor, 20%) !default;
 $loudColor:    darken($textColor, 13.33%) !default;
 
-$headerFont:   "PTSans", "Helvetica Neue", "Helvetica", Arial, sans-serif;
+$headerFont:   "PTSans", "Helvetica Neue", "Helvetica", Arial, sans-serif !default;
 $headerColor:  darken($textColor, 6.67%) !default;
 
 // Links
