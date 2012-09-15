@@ -9,3 +9,27 @@
         &.round { padding: 5px 15px; }
     }
 }
+
+// Hero Unit
+//--------------------------------------------------
+
+.hero-unit {
+    padding: 4.5em;
+    margin-bottom: 1.5em;
+    background-color: $heroUnitBackground;
+    h1 {
+        font-size: ms(6);
+        margin-top: 0;
+        margin-bottom: 0.2em;
+        line-height: 1;
+        color: $heroUnitHeadingColor;
+        letter-spacing: -1px;
+    }
+    p {
+        font-size: 18px;
+        font-weight: bold;
+        line-height: $baseLineHeight * 1.5;
+        color: $heroUnitLeadColor;
+    }
+    &.radius { @include border-radius($buttonRadius); }
+}
