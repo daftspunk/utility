@@ -1,0 +1,11 @@
+
+// Labels
+//--------------------------------------------------
+
+.label {
+    &.big {
+        font-weight: normal;
+        font-size: ms(3) + 3;
+        &.round { padding: 5px 15px; }
+    }
+}

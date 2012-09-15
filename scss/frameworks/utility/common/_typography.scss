@@ -1,14 +1,16 @@
 // Alignment
+//--------------------------------------------------
+
 .taj, .align_justify { text-align:justify; }
 .tac, .align_center { text-align:center; }
 .tal, .align_left { text-align:left; }
 .tar, .align_right { text-align:right; }
-.fl, .float_left { float:left; }
-.fr, .float_right { float:right; }
 .ttu, .uppercase { text-transform:uppercase; }
 .ttl, .lowercase { text-transform:lowercase; }
 .ttc, .capitalize { text-transform:capitalize; }
 
+.fl, .float_left, .pull_left, .pull-left { @extend .left; }
+.fr, .float_right, .pull_right, .pull-right { @extend .right; }
 
 // Patches
 //--------------------------------------------------

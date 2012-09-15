@@ -1,3 +1,9 @@
 @import "utility/settings";
 @import "utility/mixins/all";
 @import "utility/wrapper";
+
+// Changelog
+//--------------------------------------------------
+// 15-09-2012: Added .pull-left and .pull-right (Bootstrap)
+// 15-09-2012: Created label.big for oversized labels
+// 15-09-2012: Created .img-shadow to images - Usage: <div class="img-shadow circle"><img src="..." class="circle" /></div>
