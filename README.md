@@ -28,9 +28,11 @@ At this stage the following components have been improved
 
 1. __Buttons__ :: The buttons have a sexier look, with extra classes: ``inverse``, ``warning`` and ``info``
 1. __Tabs__ :: Add ``bottom`` to tabs for bottoms up orientation
+1. __Labels__ :: Add ``big`` to any label for oversized version: ``<span class="label big round">1</span>``
 
 ## What else can it do?
 There are some extras too
 
 1. __Icons__ :: This library has been pinched straight from Bootstrap, see: http://twitter.github.com/bootstrap/base-css.html#images
-1. __Images__ :: Also pinched from Bootstrap, add ``circle``, ``polaroid`` or ``rounded`` to and IMG tag
+1. __Image Rounding__ :: Also pinched from Bootstrap, add ``circle``, ``polaroid`` or ``rounded`` to and IMG tag.
+1. __Image Shadows__ :: Try adding .img-shadow to an image wrapper - Example: ```<div class="img-shadow circle"><img src="..." class="circle" /></div>```
