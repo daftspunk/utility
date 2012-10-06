@@ -1,3 +1,11 @@
+/**
+ * Popup widget
+ *
+ * Usage: 
+ *   $('#popup').popup({ trigger: '#button' });
+   * $('body').popup({ trigger: '#button', partial: 'partial:name' });
+ */
+
 ;(function ($, window, document, undefined) {
 
     $.widget("utility.popup", {
@@ -24,6 +32,9 @@
 
 
         _create: function () {
+
+            if (this.element.is('body'))
+                this.element = $('<div />').appendTo('body');
 
             this._reveal_options = {
                 animation: this.options.animation,
@@ -108,12 +119,17 @@
 
             if (this._partial_name) {
                 this._partial_build_container();
-                // $('<form />').sendRequest('core:on_null', {
-                //     selectorMode: true,
-                //     update: { '#'+this._partial_container_id, this._partial_name }
-                //     ajaxFields: {}
-                // })
-                ahoy.post().update('#'+this._partial_container_id, this._partial_name).send();
+                
+                var container_id = '#' + this._partial_container_id,
+                    update_object = { }; 
+                    update_object[container_id] = this._partial_name;
+
+                // Add ajax loader
+                $(container_id).empty().append($('<div />').addClass('reveal-loading'));
+
+                // Request partial content
+                $('<form />').sendRequest('core:on_null', { update: update_object });
+                //ahoy.post().update('#'+this._partial_container_id, this._partial_name).send();
             }
 
         },

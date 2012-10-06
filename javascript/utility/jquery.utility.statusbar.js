@@ -9,7 +9,7 @@
 
 ;(function ($, window, document, undefined) {
 
-    $.widget("utility.bar", {
+    $.widget("utility.statusbar", {
         version: '1.0',
         options: {
             inject_to:  'body', // Element to prepend bar to
@@ -17,7 +17,7 @@
             context:    'info', // Message context (info, error, success, notice)
             position:   'top',  // Bar location
             show_close: false,  // Show the X to close 
-            time:       2000    // Duration
+            time:       5000    // Duration
         },
 
         _timer: null,
@@ -31,7 +31,7 @@
                 .addClass('bar-content');
 
             this._bar = $('<div />')
-                .addClass('utility-bar')
+                .addClass('status-bar')
                 .addClass(this.options.context)
                 .addClass((this.options.position == 'bottom') ? 'bar-bottom' : 'bar-top');
 
@@ -59,20 +59,26 @@
                         .removeClass('info success warning error')
                         .addClass(value);
                     break;
+                case "message":
+                    this.show_message(value);
+                    break;
             }
             this.options[key] = value;
         },
 
         destroy: function () { 
-            $.Widget.prototype.destroy.call(_this);
+            $.Widget.prototype.destroy.call(this);
         },
 
         show_message: function(message, params) { var _this = this; 
             this._set_timer();
             this._message.html(message);
-            this._bar.stop().fadeIn('fast', function() {
-                _this._is_visible = true;
-            });
+            
+            // if (_this._is_visible)
+            //     return;
+
+            _this._is_visible = true;
+            this._bar.stop().fadeIn('fast', function() {});
         },
 
         _set_timer: function() { var _this = this;

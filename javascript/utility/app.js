@@ -5,10 +5,13 @@
       Modernizr = window.Modernizr;
 
     $(document).ready(function() { 
-        $.utility.bar && $doc.bar();
+        $.utility.statusbar && $doc.statusbar();
 
         // Tweak to foundation's topbar.js
-        $('.top-bar ul.dropdown a.link').click(function() { var dropdown = $(this).closest('.dropdown').hide(); setTimeout(function(){ dropdown.show(); }, 500); });
+        $('.top-bar ul.dropdown a.link').click(function() { 
+            var dropdown = $(this).closest('.dropdown').hide(); setTimeout(function(){ dropdown.show(); }, 500); 
+            $('.top-bar .toggle-topbar > a').trigger('click');
+        });
 
     });
 

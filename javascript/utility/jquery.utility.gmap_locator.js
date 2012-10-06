@@ -18,7 +18,7 @@
             this._reset();
      
             // Call parent constructor
-             $.utility.gmap.prototype._create.call(this);
+            $.utility.gmap.prototype._create.call(this);
 
             this._container = $(this.options.container);
             this.set_locations();

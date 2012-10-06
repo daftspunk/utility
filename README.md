@@ -33,11 +33,11 @@ At this stage the following components have been improved
 ## What's this about Bootstrap?
 These features have been ported from Bootstrap
 
-1. __Icons__ :: 140 icons in sprite form, in dark gray or white - See: http://twitter.github.com/bootstrap/base-css.html#images
 1. __Image Styles__ :: Add ``circle``, ``polaroid`` or ``rounded`` to and IMG tag
 1. __Hero Unit__ :: Showcase component - Usage: ``<div class="hero-unit"><h1>Heading</h1><p>Tagline</p></div>``
 
 ## What else can it do?
 There are some unique features too
 
+1. __Icons__ :: Includes Font Awesome icon pack - http://fortawesome.github.com/Font-Awesome/
 1. __Image Shadows__ :: Try adding .img-shadow to an image wrapper - Usage: ```<div class="img-shadow circle"><img src="..." class="circle" /></div>```

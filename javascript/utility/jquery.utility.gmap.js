@@ -27,7 +27,6 @@
         _cluster_rules: { },
 
         _create: function () {
-            
             var map_options = {
                 zoom: this.options.start_zoom,
                 center: new google.maps.LatLng(this.options.start_position[0], this.options.start_position[1]),
@@ -50,9 +49,7 @@
             if (this._map)
                 this._call_action('destroy');
 
-
             this._map = $(this.element).gmap3({ action:'init', options:map_options });
-
         },
 
         destroy: function () {
