@@ -112,7 +112,7 @@
                 .wrapInner(overview)
                 .wrapInner(viewport);
 
-            this.element.prepend(scrollbar);
+            this.element.css('position', 'relative').prepend(scrollbar);
 
             this._viewport = { obj: $('.viewport', this.element) };
             this._content = { obj: $('.overview', this.element) };
