@@ -3,9 +3,10 @@
     $.widget("utility.gmap_locator", $.utility.gmap, {
         version: '1.0',
         options: {
-            show_on_hover: true,
-            bubble_id_prefix: '#location_',
-            container: 'ul#locations' // Container with locations
+            bubble_on_hover: true,
+            autofit_markers: true, 
+            bubble_id_prefix: '#bubble_',
+            container: '#browse_sidebar_content ul' // Container with locations
         },
 
         // Internals
@@ -36,12 +37,13 @@
             var events = { };
             events.click = function (marker, event, data) { self.show_content(data.id, marker); };
             
-            if (this.options.show_on_hover)
+            if (this.options.bubble_on_hover)
                 events.mouseover = function (marker, event, data) { self.show_content(data.id, marker); };
 
             this.add_to_chain(function() { 
                 self.add_markers(self._address_list, events); 
-                self.autofit();                
+                if (self.options.autofit_markers)
+                    self.autofit();
             });
 
             this.execute_chain();
@@ -58,7 +60,7 @@
 
         set_locations: function() {
             var self = this;
-            this._container.find('>li').each(function(){
+            this._container.find('>li').each(function() {
                 var address_id = $(this).data('id');
                 var content_panel = $(self.options.bubble_id_prefix+address_id);
                 var address_string = $(this).data('address');

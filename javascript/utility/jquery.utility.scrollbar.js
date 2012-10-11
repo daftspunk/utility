@@ -41,14 +41,14 @@
         },
 
         update: function(scroll) {
-            this._viewport.obj
-                .css({ 
-                    width: (this.element.outerWidth() - (this._scroll_axis ? 0 : 20)) + "px",
-                    height: (this.element.outerHeight() - (this._scroll_axis ? 20 : 0)) + "px"
-                });
-
-            if (this._scroll_axis)
+            this._viewport.obj.css({ width: (this.element.outerWidth() - (this._scroll_axis ? 0 : 20)) + "px", height: (this.element.outerHeight() - (this._scroll_axis ? 20 : 0)) + "px" });
+            
+            if (this._scroll_axis) {
+                this._content.obj.css({ height: (this.element.outerHeight() - (this._scroll_axis ? 20 : 0)) + "px" });
                 this._viewport.obj.css('top', 20+"px");
+            }
+            else
+                this._content.obj.css({ width: (this.element.outerWidth() - (this._scroll_axis ? 0 : 20)) + "px" });
 
             this._viewport[this.options.axis] = this._viewport.obj[0]['offset'+ this._scroll_size];
             this._content[this.options.axis] = this._content.obj[0]['scroll'+ this._scroll_size];
