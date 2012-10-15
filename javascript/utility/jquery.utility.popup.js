@@ -9,7 +9,7 @@
 ;(function ($, window, document, undefined) {
 
     $.widget("utility.popup", {
-        version: '1.0',
+        version: '1.1',
         options: {
             on_open:           null,           // Callback when popup opens
             on_close:          null,           // Callback when popup closes
@@ -22,7 +22,8 @@
             animation:         'fadeAndPop',   // Options: fade, fadeAndPop, none
             animation_speed:   300,            // Animate speed in milliseconds
             auto_reveal:       false,          // Show popup when page opens?
-            partial:           null
+            partial:           null,           // Dynamically load a partial
+            partial_data:      null            // Data to send along with the partial request
         },
 
         // Internals
@@ -128,7 +129,7 @@
                 $(container_id).empty().append($('<div />').addClass('reveal-loading'));
 
                 // Request partial content
-                $('<form />').sendRequest('core:on_null', { update: update_object });
+                $('<form />').sendRequest('core:on_null', { update: update_object, extraFields: this.options.partial_data });
                 //ahoy.post().update('#'+this._partial_container_id, this._partial_name).send();
             }
 
