@@ -10,7 +10,7 @@
 ;(function ($, window, document, undefined) {
 
     $.widget("utility.statusbar", {
-        version: '1.0.1',
+        version: '1.0.2',
         options: {
             inject_to:  'body', // Element to prepend bar to
             message:    '',     // Message to display in bar
@@ -78,7 +78,7 @@
             //     return;
 
             _this._is_visible = true;
-            this._bar.stop(true, true).fadeIn('fast', function() {});
+            this._bar.stop(true, true).fadeIn('fast', function() { _this._is_visible = true; });
         },
 
         _set_timer: function() { var _this = this;
