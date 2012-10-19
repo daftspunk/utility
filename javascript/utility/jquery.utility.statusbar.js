@@ -10,7 +10,7 @@
 ;(function ($, window, document, undefined) {
 
     $.widget("utility.statusbar", {
-        version: '1.0',
+        version: '1.0.1',
         options: {
             inject_to:  'body', // Element to prepend bar to
             message:    '',     // Message to display in bar
@@ -78,7 +78,7 @@
             //     return;
 
             _this._is_visible = true;
-            this._bar.stop().fadeIn('fast', function() {});
+            this._bar.stop(true, true).fadeIn('fast', function() {});
         },
 
         _set_timer: function() { var _this = this;
@@ -95,7 +95,7 @@
         remove_message: function() { var _this = this; 
             if (_this._is_visible) {
                 _this._clear_timer();
-                _this._bar.stop().fadeOut('fast', function() {
+                _this._bar.stop(true, true).fadeOut('fast', function() {
                     _this._is_visible = false;
                 });
             }
