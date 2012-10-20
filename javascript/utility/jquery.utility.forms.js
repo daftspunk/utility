@@ -35,11 +35,11 @@
                     .append('<span>Down</span>')
                     .attr('href', 'javascript:;');
                 
-                element.wrap($('<span />').addClass('custom quantity'))
+                element.wrap($('<span />').addClass('custom-input-quantity'))
                     .after(down_arrow)
                     .after(up_arrow);
 
-                element.closest('span.custom.quantity')
+                element.closest('span.custom-input-quantity')
                     .find('.arrow')
                     .click(_this._click_quantity_input);
             });
@@ -49,7 +49,7 @@
             var element = $(this);
             var quantity = 1;
             var input_field = element
-                .closest('span.custom.quantity')
+                .closest('span.custom-input-quantity')
                 .find('input.input-quantity');
 
             var value = parseInt(input_field.val());
