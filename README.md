@@ -39,8 +39,9 @@ These features have been ported from Bootstrap
 ## What else can it do?
 There are some unique features too
 
-1. __Icons__ :: Includes Font Awesome icon pack - http://fortawesome.github.com/Font-Awesome/
-1. __Image Shadows__ :: Try adding .img-shadow to an image wrapper - Usage: ```<div class="img-shadow circle"><img src="..." class="circle" /></div>```
-1. __Separators__:: Add ```separator``` to any div with: ```bottom``` or ```right``` - Usage: ```<div class="separator bottom shadow">Content here</div>```
-1. __Link Buttons__:: A more subtle version of a button - Usage: ```<a href="#" class="link_button">Link</a>```
-1. __Star Rating__:: Star ratings - Usage: ```<p class="star-rating"><i class="rating-25"></i> <span> based on 2 reviews</span></p>```
+1. __Icons__: Includes Font Awesome icon pack - http://fortawesome.github.com/Font-Awesome/
+1. __Image Shadows__: Try adding .img-shadow to an image wrapper - Usage: ``<div class="img-shadow circle"><img src="..." class="circle" /></div>``
+1. __Separators__: Add ``separator`` to any div with: ``bottom`` or ``right`` - Usage: ``<div class="separator bottom shadow">Content here</div>``
+1. __Link Buttons__: A more subtle version of a button - Usage: ``<a href="#" class="link_button">Link</a>``
+1. __Star Rating__: Star ratings - Usage: ``<p class="star-rating"><i class="rating-25"></i> <span> based on 2 reviews</span></p>``
+1. __Quantity Input__: Adds up / down arrows to an input field - Usage: ``<input class="input-quantity" type="text" name="quantity" value="1" />``
