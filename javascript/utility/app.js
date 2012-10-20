@@ -6,6 +6,7 @@
 
     $(document).ready(function() { 
         $.utility.statusbar && $doc.statusbar();
+        $.utility.forms && $doc.forms();
 
         // Tweak to foundation's topbar.js
         $('.top-bar ul.dropdown a.link').click(function() { 
