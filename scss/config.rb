@@ -1,10 +1,6 @@
 $LOAD_PATH << "#{File.dirname(__FILE__)}"
 
 relative_assets = true
-images_dir = "assets/images"
-css_dir = "assets/css"
-fonts_dir = "assets/css/font"
-
 
 Compass::Frameworks.register("sassy-math", :path => "#{File.dirname(__FILE__)}/..")
 
