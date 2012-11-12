@@ -75,4 +75,5 @@ A step navigation, aka. progress tracker - Usage:
     <li><em>2</em><span>Choose a job</li>
     <li><em>3</em><span>Choose a career</li>
     <li><em>4</em><span>Choose a family</li>
-</ol>```
+</ol>
+```
