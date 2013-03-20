@@ -1,0 +1,108 @@
+.status-bar {
+    height: @statusBarHeight;
+    width: 100%;
+    position: fixed;
+    text-align: center;
+    left: 0px;
+    z-index: 99999;
+    margin: 0px;
+    padding: 0px;
+    color: @statusBarTextColor;
+    letter-spacing: 1px;
+
+    .opacity(95);
+    text-shadow: 0px 0px 4px @black;
+
+    &.bar-top {
+        top: 0px;
+        border-bottom: 3px solid @black;
+        a.bar-cross { top:8px; }
+
+        -webkit-animation: status-bar 2s linear infinite;
+        -moz-animation: status-bar 2s linear infinite;
+        -ms-animation: status-bar 2s linear infinite;
+        -o-animation: status-bar 2s linear infinite;
+        animation: status-bar 2s linear infinite;
+        
+        .background-size(@statusBarHeight*2 @statusBarHeight*2);
+
+        &.info {
+            #gradient > .striped(@infoBackground);
+        }
+
+        &.error {
+            #gradient > .striped(@errorBackground);
+        }    
+
+        &.success {
+            #gradient > .striped(@successBackground);
+        }    
+
+        &.notice {
+            #gradient > .striped(@warningBackground);
+        }
+
+        
+    }
+
+    &.bar-bottom {
+        bottom: 0px;
+        border-top: 2px solid @black;
+        a.bar-cross { bottom: 8px; }
+    }
+
+    &.info {
+        border-color: darken(@infoBorder, 10%);
+        text-shadow: 0px 0px 4px darken(@infoBorder, 20%);
+    }
+
+    &.error {
+        border-color: darken(@errorBorder, 10%);
+        text-shadow: 0px 0px 4px darken(@errorBorder, 20%);
+    }    
+
+    &.success {
+        border-color: darken(@successBorder, 10%);
+        text-shadow: 0px 0px 4px darken(@successBorder, 20%);
+    }    
+
+    &.notice {
+        border-color: darken(@warningBorder, 10%);
+        text-shadow: 0px 0px 4px darken(@warningBorder, 20%);
+    }
+
+    .bar-content {
+        line-height: @statusBarHeight - 2;
+        font-size: @statusBarTextSize;
+    }
+}
+
+// Webkit
+@-webkit-keyframes status-bar {
+  from { background-position: @statusBarHeight*2 0; }
+  to { background-position: 0 0; }
+}
+
+// Firefox
+@-moz-keyframes status-bar {
+  from { background-position: @statusBarHeight*2 0; }
+  to { background-position: 0 0; }
+}
+
+// IE9
+@-ms-keyframes status-bar {
+  from { background-position: @statusBarHeight*2 0; }
+  to { background-position: 0 0; }
+}
+
+// Opera
+@-o-keyframes status-bar {
+  from { background-position: 0 0; }
+  to { background-position: @statusBarHeight*2 0; }
+}
+
+// Spec
+@keyframes status-bar {
+  from { background-position: @statusBarHeight*2 0; }
+  to { background-position: 0 0; }
+}

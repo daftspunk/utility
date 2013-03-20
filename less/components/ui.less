@@ -1,0 +1,25 @@
+
+// Progress Tracker
+//--------------------------------------------------
+
+.progress-tracker {
+    /* TODO: was .block-grid; */
+    margin: 0;
+    padding-bottom: 15px;
+    li { 
+        color: @quietColor; 
+        position: relative;
+        &.active { color:@primaryColor; }
+        span { 
+            display:block;
+            margin-top: 4px; 
+            margin-left: 30px; 
+            line-height:1.1; 
+        }
+        em { 
+            width: 28px; line-height: 1.1; text-align: right; 
+            font-weight: bold; font-size:32px; 
+            position: absolute; left: 0; top: 0;
+        }
+    }
+}

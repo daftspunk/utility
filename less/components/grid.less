@@ -1,0 +1,19 @@
+
+// Separators
+//--------------------------------------------------
+
+.separator {
+	&.bottom {
+		padding-bottom: 15px;
+		margin-bottom:15px; 
+		border-bottom:2px dashed @borderColor;
+		&.shadow { border-bottom:none; .box-shadow(15px 0 15px -15px @gray); }
+	}
+	&.right {
+		float: none;        
+		padding-right: @columnGutter;
+		border-right:2px dashed @borderColor;
+		background:transparent;
+		&.shadow { border-right:none; .box-shadow(15px 0 15px -15px @gray); margin-right: 15px; }
+	}
+}

@@ -1,0 +1,100 @@
+// Usage:
+// <p class="star-rating"><i class="rating-25"></i> <span> based on 2 reviews</span></p>
+
+.star-rating {
+	i, .star, .cancel { 
+		font-size: @starRatingStarSizeMedium; 
+		.text-shadow(@white 1px 1px 0);
+	} 
+
+	&.large { 
+		i, .star, .cancel { font-size: @starRatingStarSizeLarge; } 
+	}
+
+	.star, .cancel {
+		font-family: FontAwesome;
+		float: left;
+		display: block;
+		cursor: pointer;
+
+		a {
+			overflow: hidden;
+			text-indent: -999em;
+			min-width: 18px;
+			min-height: 18px;
+			display: block;
+			display:none;
+		}
+	}
+	.star, .star-on, .star-hover {
+		&:before { padding-right: 2px; }
+	}
+	.star {
+		&:before {
+			content: "\f006";
+			color: @grayLight;
+		}
+	}
+	.star-on, .star-hover {
+		&:before {
+			content: "\f005";
+			color: @starRatingStarOnColor;
+		}
+	}
+	
+	.star-hover {
+		&:before { color:lighten(@starRatingStarOnColor, 10%); }
+	}
+
+	.cancel, .cancel-hover {
+		&:before {
+			content: "\f006";
+			padding-right: 5px;
+			color: @starRatingStarOffColor;            
+		}
+	}
+
+	.cancel-hover {
+		&:before { color:darken(@starRatingStarOffColor, 20%); }
+	}
+
+	.star-disabled,
+	.star-disabled a,
+	.cancel-disabled a {
+		cursor: default !important;
+	}
+
+	> span {
+		display: inline-block;
+		font-style: italic;
+		color: @starRatingTextColor;
+		font-size: @starRatingTextSize;
+		position: relative;
+		top: -3px;
+	}
+
+	> i {
+		display: inline-block;
+		position: relative;
+		font-family: FontAwesome;
+		font-style: normal;
+
+		&:before { 
+			color: @starRatingStarOffColor;
+			content: "\f006\f006\f006\f006\f006";
+		}
+		&:after { 
+			color: @starRatingStarOnColor; 
+			position:absolute; left:0; 
+		}
+		&.rating-10:after { content: "\f005"; }
+		&.rating-15:after { content: "\f005\f089"; }
+		&.rating-20:after { content: "\f005\f005"; }
+		&.rating-25:after { content: "\f005\f005\f089"; }
+		&.rating-30:after { content: "\f005\f005\f005"; }
+		&.rating-35:after { content: "\f005\f005\f005\f089"; }
+		&.rating-40:after { content: "\f005\f005\f005\f005"; }
+		&.rating-45:after { content: "\f005\f005\f005\f089"; }
+		&.rating-50:after { content: "\f005\f005\f005\f005\f005"; }
+	}
+}

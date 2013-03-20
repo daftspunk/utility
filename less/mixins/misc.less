@@ -1,0 +1,20 @@
+// Misc
+//--------------------------------------------------
+
+.true-height(@height) {
+	height: @height * 1px;
+	line-height: @height * 1px;
+}
+
+.font-size(@size, @extra: '') {
+	font-size: @size * 1px ~"@{extra}";
+	font-size: (@size / 10) * 1rem ~"@{extra}";
+}
+
+.reset {
+	padding:0px;
+	margin:0px;
+	border:none;
+	line-height:normal;
+	list-style:none;
+}
