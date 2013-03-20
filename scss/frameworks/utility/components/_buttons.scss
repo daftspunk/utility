@@ -1,0 +1,103 @@
+//
+// Tszuj up the buttons, darling
+// --------------------------------------------------
+
+.button { 
+    font-weight: $buttonWeight;
+    font-family: $buttonFont; 
+
+    // Main button
+    background-color: $mainColor; 
+    border: 1px solid darken(($mainColor), 10%); border-bottom: 1px solid darken(($mainColor), 20%);
+
+    &:hover { 
+        color: $white;
+        background-color: darken(($mainColor), 5%); 
+        @include background-image(linear-gradient(top, $mainColor, darken($mainColor,5%)));
+    }
+    &.success { 
+        background-color: $successColor;    
+        border: 1px solid darken(($successColor), 10%); border-bottom: 1px solid darken(($successColor), 20%);
+
+        &:hover { 
+            background-color:darken($successColor,5%); 
+            @include background-image(linear-gradient(top, $successColor, darken($successColor,5%)));
+        }
+    }
+    &.alert { 
+        background-color: $alertColor;    
+        border: 1px solid darken(($alertColor), 10%); border-bottom: 1px solid darken(($alertColor), 20%);
+
+        &:hover { 
+            background-color:darken($alertColor,5%); 
+            @include background-image(linear-gradient(top, $alertColor, darken($alertColor,5%)));
+        }        
+    }
+    &.secondary { 
+        background-color: $secondaryColor;    
+        border: 1px solid darken(($secondaryColor), 10%); border-bottom: 1px solid darken(($secondaryColor), 20%);
+
+        &:hover {
+            color: darken(($secondaryColor), 80%);
+            background-color:darken($secondaryColor,5%); 
+            @include background-image(linear-gradient(top, $secondaryColor, darken($secondaryColor,5%)));
+        }
+    }
+
+    &:active, &.active, &:active:hover, &.active:hover { 
+        color: darken(($buttonActiveColor), 45%);
+        background-image: none;
+        background-color: $buttonActiveColor; 
+        @include box-shadow(0 2px 0 $darkEdge inset); 
+        border: 1px solid darken($buttonActiveColor,15%); 
+        border-top: 1px solid darken(($buttonActiveColor), 30%);
+    }
+
+    @include box-shadow(0 -2px 0 $darkEdge inset, 0 0 1px rgba(0,0,0,.1));
+    @include transition(none);
+
+    &.large     { font-size: ms(1) + 2; }
+    &.medium    { font-size: ms(0) + 2; }
+    &.small     { font-size: ms(0) - 2; }
+    &.tiny      { font-size: ms(0) - 3; }
+    font-size: ms(0) + 1;
+}
+
+//
+// Tone the buttons down, darling
+// --------------------------------------------------
+
+.link_button {
+    background-color: $secondaryColor; 
+    color: darken(($secondaryColor), 80%); 
+    padding: 6px 10px;
+    display: inline-block;
+    font-size: ms(0) - 1; 
+    line-height: 100%;
+    text-decoration: none;
+
+    /* Radii */
+    &.radius { @include border-radius($buttonRadius); }
+    &.round { @include border-radius(1000px); }
+
+    /* Layout */
+    &.full-width { width: 100%; text-align: center; padding-#{$defaultFloat}: 0px !important; padding-#{$defaultOpposite}: 0px !important; }
+    &.left-align { text-align: left; text-indent: 12px; }    
+}
+
+a:hover.link_button, a:hover > span.link_button {
+    background-color: $primaryColor;
+    color: $white;
+}
+
+//
+// Button group extensions
+// --------------------------------------------------
+
+ul.button-group { 
+    &.even {
+        &.six-up li { width: 16.66666%; }
+        &.seven-up li { width: 14.28571%; }
+        &.eight-up li { width: 12.5%; }
+    }
+}

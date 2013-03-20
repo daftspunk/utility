@@ -1,0 +1,44 @@
+// (Foundation)
+.top-bar {
+    ul>li {
+
+        &.has-button {
+            &:hover {
+                // Fixes secondary button text colour
+                a { color: $white; 
+                    &.secondary { color: darken(($secondaryColor), 80%); }
+                }
+            }
+        }
+
+        &.has-dropdown .dropdown {
+            // Allow row where nav itself not nested in a row
+            .row { 
+                width: auto; max-width: none; min-width: 0; margin: 0 (-($columnGutter/2));
+                &.collapse { margin: 0; }
+            }
+
+            // Allows a normal link
+            li a.link {
+                padding:0; 
+                line-height: 1.6;
+                white-space: normal;
+                &:hover { background:transparent; color:$white; } 
+            }
+        }
+
+    }
+}
+
+@media only screen and (max-width: $topBarBreakPoint) {
+    .top-bar {    
+        ul>li.has-dropdown .dropdown li a.link {
+            padding:0 !important;
+        }
+    }
+}
+
+// (Foundation)
+ul.side-nav { 
+    li.divider { border-color: $borderColor; }
+}

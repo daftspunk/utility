@@ -1,0 +1,9 @@
+// Adds loading state to orbit
+.orbit-slider {
+    background: image-url("utility/loading.gif") center center no-repeat; height:300px;
+    img { display:none; }
+    &.orbit {
+        background: none;
+        img { display: block; }        
+    }
+}

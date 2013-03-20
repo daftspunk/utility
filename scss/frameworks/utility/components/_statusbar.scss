@@ -1,0 +1,109 @@
+.status-bar {
+    height: $statusBarHeight;
+    width: 100%;
+    position: fixed;
+    text-align: center;
+    left: 0px;
+    z-index: 99999;
+    margin: 0px;
+    padding: 0px;
+    color: $statusBarTextColor;
+    letter-spacing: 1px;
+
+    @include opacity(0.95);
+    @include text-shadow($black 0px 0px 4px);
+
+    &.bar-top {
+        top: 0px;
+        border-bottom: 3px solid $black;
+        a.bar-cross { top:8px; }
+
+        -webkit-animation: status-bar 2s linear infinite;
+        -moz-animation: status-bar 2s linear infinite;
+        -ms-animation: status-bar 2s linear infinite;
+        -o-animation: status-bar 2s linear infinite;
+        animation: status-bar 2s linear infinite;
+        
+        @include background-size($statusBarHeight*2 $statusBarHeight*2);
+
+        &.info {
+            @include gradient-striped($infoColor);
+        }
+
+        &.error {
+            @include gradient-striped($errorColor);
+        }    
+
+        &.success {
+            @include gradient-striped($successColor);
+        }    
+
+        &.notice {
+            @include gradient-striped($warningColor);
+        }
+
+        
+    }
+
+    &.bar-bottom {
+        bottom: 0px;
+        border-top: 2px solid $black;
+        a.bar-cross { bottom: 8px; }
+    }
+
+    &.info {
+        border-color: darken($infoColor, 10%);
+        @include text-shadow(darken($infoColor, 20%) 0px 0px 4px);
+    }
+
+    &.error {
+        border-color: darken($errorColor, 10%);
+        @include text-shadow(darken($errorColor, 20%) 0px 0px 4px);
+    }    
+
+    &.success {
+        border-color: darken($successColor, 10%);
+        @include text-shadow(darken($successColor, 20%) 0px 0px 4px);
+    }    
+
+    &.notice {
+        border-color: darken($warningColor, 10%);
+        @include text-shadow(darken($warningColor, 20%) 0px 0px 4px);
+    }
+
+    .bar-content {
+        line-height: $statusBarHeight - 2;
+        font-size: $statusBarTextSize;
+    }
+}
+
+// Webkit
+@-webkit-keyframes status-bar {
+  from { background-position: $statusBarHeight*2 0; }
+  to { background-position: 0 0; }
+}
+
+// Firefox
+@-moz-keyframes status-bar {
+  from { background-position: $statusBarHeight*2 0; }
+  to { background-position: 0 0; }
+}
+
+// IE9
+@-ms-keyframes status-bar {
+  from { background-position: $statusBarHeight*2 0; }
+  to { background-position: 0 0; }
+}
+
+// Opera
+@-o-keyframes status-bar {
+  from { background-position: 0 0; }
+  to { background-position: $statusBarHeight*2 0; }
+}
+
+// Spec
+@keyframes status-bar {
+  from { background-position: $statusBarHeight*2 0; }
+  to { background-position: 0 0; }
+}
+

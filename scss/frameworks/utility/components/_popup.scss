@@ -1,0 +1,10 @@
+// Adds loading state to reveal
+.popup {
+    display: none;
+    &.reveal-modal { display: block; }
+}
+.reveal-modal {
+    @include border-radius($buttonRadius);
+    .reveal-loading { background: image-url("utility/loading.gif") center center no-repeat; height:300px; }
+    form { margin-bottom:0; }
+}

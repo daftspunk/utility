@@ -1,0 +1,131 @@
+// Colors
+//--------------------------------------------------
+
+$primaryColor:   #0088cc !default;
+$secondaryColor: #e9e9e9 !default;
+$shadeColor:     #FFFFDD !default;
+$borderColor:    #dddddd !default;
+
+// Typography
+//--------------------------------------------------
+
+$baseFontSize:   12px !default;
+$baseLineHeight: 15px !default;
+$textFont:       "Helvetica Neue", "Helvetica", Helvetica, Arial, sans-serif !default;
+$textColor:      #222 !default;
+$textWeight:     normal !default;
+$altTextColor:   #666666 !default;
+
+$quietColor:   lighten($textColor, 20%) !default;
+$loudColor:    darken($textColor, 13.33%) !default;
+
+$headerFont:   "PTSans", "Helvetica Neue", "Helvetica", Arial, sans-serif !default;
+$headerColor:  darken($textColor, 6.67%) !default;
+
+// Links
+//--------------------------------------------------
+
+$linkColor:         $primaryColor !default;
+$linkHoverColor:    darken($linkColor, 5%) !default;
+$linkFocusColor:    $linkColor !default;
+$linkActiveColor:   lighten($linkColor, 10%) !default;
+
+// Forms
+//--------------------------------------------------
+
+$feedbackColor:       #555555 !default;
+$errorColor:          #c30a0a !default;
+$successColor:        #81b31b !default;
+$warningColor:        #ff9c00 !default;
+$infoColor:           #1b88ce !default;
+
+// Basic Scale
+//--------------------------------------------------
+
+$blue:           #1b88ce !default;
+$green:          #81b31b !default;
+$red:            #c30a0a !default;
+$yellow:         #ffc40d !default;
+$orange:         #f2990d !default;
+$pink:           #c3325f !default;
+$purple:         #7a43b6 !default;
+
+// Grey Scale
+//--------------------------------------------------
+
+$black:         rgb(0,0,0) !default;
+$grayDark:      lighten($black, 25%) !default;
+$gray:          lighten($black, 50%) !default;
+$grayLight:     lighten($black, 75%) !default;
+$grayLighter:   lighten($black, 90%) !default;
+$white:         rgb(255,255,255) !default;
+
+// Palettes
+//--------------------------------------------------
+
+$primaryLight1: lighten($primaryColor, 5%) !default;     // Lighten base
+$primaryLight2: lighten($primaryColor, 10%) !default;
+$primaryLight3: lighten($primaryColor, 15%) !default;
+$primaryLight4: lighten($primaryColor, 20%) !default;
+
+$primaryDark1: darken($primaryColor, 5%) !default;      // Darken base
+$primaryDark2: darken($primaryColor, 10%) !default;
+$primaryDark3: darken($primaryColor, 15%) !default;
+$primaryDark4: darken($primaryColor, 20%) !default;
+
+$secondaryLight1: lighten($secondaryColor, 5%) !default;     // Lighten complementary
+$secondaryLight2: lighten($secondaryColor, 10%) !default;
+$secondaryLight3: lighten($secondaryColor, 15%) !default;
+$secondaryLight4: lighten($secondaryColor, 20%) !default;
+
+$secondaryDark1: darken($secondaryColor, 5%) !default;      // Darken complementary
+$secondaryDark2: darken($secondaryColor, 10%) !default;
+$secondaryDark3: darken($secondaryColor, 15%) !default;
+$secondaryDark4: darken($secondaryColor, 20%) !default;
+
+// Buttons
+//--------------------------------------------------
+
+$buttonRadius:         5px !default;
+$buttonFont:           $textFont !default;
+$buttonWeight:         bold !default;
+$buttonPrimaryColor:   $secondaryLight4 !default;      // Change to a suitable primary button colour as needed.
+$buttonSecondaryColor: $primaryLight4 !default;       // Change to a suitable secondary button colour as needed.
+$buttonWhiteColor:     $grayLighter !default;
+$buttonBlackColor:     $grayDark !default;
+$buttonActiveColor:    $grayLight !default;
+
+$btnBase: 9px;
+$tinyBtnBase: 4px;
+$smallBtnBase: 6px;
+$largeBtnBase: 11px;
+
+// Tables
+//--------------------------------------------------
+
+$tableColor:            lighten($primaryColor, 45%) !default; // Change to a visible colour if it is not displaying
+$tableBackground:       transparent !default;                 // Overall background-color
+$tableBackgroundAccent: #f9f9f9 !default;                     // For striping
+$tableBackgroundHover:  #f5f5f5 !default;                     // For hover
+$tableBorder:           $borderColor !default;                // Table and cell border
+
+// Scrollbar
+//--------------------------------------------------
+$scrollbarTrackColor: $grayLighter !default;
+$scrollbarThumbColor: $grayLight !default;
+
+// Star Rating
+//--------------------------------------------------
+
+$starRatingStarOnColor: #e3cf7a !default;
+$starRatingStarOffColor: $grayLighter !default;
+$starRatingTextColor: #bbbbbb !default;
+$starRatingTextSize: 12px !default;
+$starRatingStarSizeMedium: 25px !default;
+$starRatingStarSizeLarge: 35px !default;
+
+// Status Bar
+//--------------------------------------------------
+$statusBarHeight: 46px !default;
+$statusBarTextColor: $white !default;
+$statusBarTextSize: 18px !default;
