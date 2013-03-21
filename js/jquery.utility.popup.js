@@ -9,18 +9,16 @@
 ;(function ($, window, document, undefined) {
 
 	$.widget("utility.popup", {
-		version: '1.2.5',
+		version: '2.0.0',
 		options: {
 			on_open:           null,           // Callback when popup opens
 			on_close:          null,           // Callback when popup closes
 			trigger:           null,           // Trigger to open
 			extra_close:       '.popup_close', // Trigger to close
 			show_close:        true,           // Show the X to close
-			close_on_bg_click: true,           // If you click background close popup?
+			close_on_esc_press: true,          // If you press escape close popup?
 			move_to_element:   false,          // Move the popup to another element
 			size:              null,           // Options: small, medium, large, xlarge, expand
-			animation:         'fadeAndPop',   // Options: fade, fadeAndPop, none
-			animation_speed:   300,            // Animate speed in milliseconds
 			auto_reveal:       false,          // Show popup when page opens?
 			
 			// PHPR Specific
@@ -34,7 +32,7 @@
 		_partial_container_id: null,
 		_partial_name: null,
 		_partial_loaded: false,
-		_reveal_options: { },
+		_modal_options: { },
 
 		_init: function () {
 			if (this.element.is('body')) {
@@ -43,11 +41,8 @@
 				return;
 			}
 
-			this._reveal_options = {
-				animation: this.options.animation,
-				animationspeed: this.options.animation_speed,
-				closeOnBackgroundClick: this.options.close_on_bg_click,
-				dismissModalClass: 'close-reveal-modal'
+			this._modal_options = {
+				keyboard: this.options.close_on_esc_press				
 			};
 
 			this._partial_name = this.options.partial;
@@ -63,27 +58,37 @@
 
 			var self = this;
 
-			this.element.addClass('reveal-modal');
+			this.element.addClass('modal');
 			if (this.options.size)
 				this.element.addClass(this.options.size);
 
 			// Popup opening
 			if (this.options.trigger) {
 				var trigger = $(this.options.trigger);
-				trigger.die('click').live('click', function() {
-					self._handle_partial($(this));
-					self.open_popup($(this));
-				});
+
+				trigger.off('click.utility.popup')
+					.on('click.utility.popup', function() {
+						self._handle_partial($(this));
+						self.openPopup($(this));
+					});
 			}
 
 			// Popup closing
-			this.element.find(this.options.extra_close).die('click').live('click', function() {
-				self.element.trigger('reveal:close');
-			});
+			this.element.find(this.options.extra_close).off('click.utility.popup')
+				.on('click.utility.popup', function() {
+					self.closePopup();
+				});
 
 			// Add close cross
-			var close_cross = $('<a />').addClass('close-reveal-modal').html('&#215;');
-			close_cross.appendTo(this.element);
+			var close_cross = $('<a />').addClass('close').data('dismiss', 'modal').html('&#215;')
+				.on('click.utility.popup', function() { self.closePopup(); });
+
+			var crossContainer = this.element.find('.modal-header');
+
+			if (crossContainer.length > 0)
+				close_cross.prependTo(crossContainer);
+			else
+				close_cross.prependTo(this.element.find('.modal-body'));
 
 			// Move the popup to a more suitable position
 			if (this.options.move_to_element)
@@ -92,7 +97,7 @@
 			// Auto reveal
 			if (this.options.auto_reveal) {
 				self._handle_partial($(this));
-				self.open_popup($(this));
+				self.openPopup($(this));
 			}
 
 		},
@@ -100,26 +105,26 @@
 		// Service methods
 		// 
 
-		open_popup: function(triggered_by) { var self = this;
+		openPopup: function(triggered_by) { var self = this;
 
 			// Open event
-			this.options.on_open && this.element.unbind('reveal:open').bind('reveal:open', this.options.on_open.apply(this, [triggered_by]));
+			this.options.on_open && this.element.unbind('shown').bind('shown', this.options.on_open.apply(this, [triggered_by]));
 
 			// Close event
-			this.options.on_close && this.element.unbind('reveal:close').bind('reveal:close', this.options.on_close.apply(this, [triggered_by]));
+			this.options.on_close && this.element.unbind('hide').bind('hide', this.options.on_close.apply(this, [triggered_by]));
 			
-			this.element.reveal(this._reveal_options);
+			this.element.modal(this._modal_options);
 			
 			// Reset cache if necessary
-			this.element.bind('reveal:close', function(){ 
+			this.element.bind('hide', function(){ 
 				if (!self.options.cache_partial)
 					self.reset_cache();
 			}); 
 
 		},
 
-		close_popup: function() { 
-			this.element.trigger('reveal:close'); 
+		closePopup: function() { 
+			this.element.modal('hide');
 		},
 
 		// Partial Loading
@@ -150,7 +155,7 @@
 				}
 				
 				// Add ajax loader
-				$(container_id).empty().append($('<div />').addClass('reveal-loading'));
+				$(container_id).empty().append($('<div />').addClass('modal-popup-loading'));
 				
 				// Request partial content
 				$('<form />').sendRequest(self.options.action, { 
@@ -173,7 +178,7 @@
 			// Look for a cached partial container
 			if (this.options.cache_partial) {
 				var existing_partial = $('div[rel="'+this._partial_name+'"]');
-				if (existing_partial.length > 0 && existing_partial.hasClass('partial-reveal-modal')) {
+				if (existing_partial.length > 0 && existing_partial.hasClass('modal-content-partial')) {
 					this._partial_container_id = existing_partial.attr('id');
 					this._partial_loaded = true;
 					return;
@@ -183,12 +188,12 @@
 			// Container ID not found
 			if (!this._partial_container_id) {
 				var random_number = (Math.floor((Math.random() * 100)) % 94) + 33;
-				this._partial_container_id = 'reveal-content'+random_number;
+				this._partial_container_id = 'modal-content'+random_number;
 			}
 
 			// Container not found, create
 			if ($('#'+this._partial_container_id).length == 0) {
-				$('<div />').addClass('partial-reveal-modal')
+				$('<div />').addClass('modal-content-partial')
 					.attr('id', this._partial_container_id)
 					.appendTo(this.element);
 			}

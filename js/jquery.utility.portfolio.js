@@ -12,20 +12,20 @@
 
 ;(function ($, window, document, undefined) {
 
-		$.widget("utility.portfolio", {
+	$.widget("utility.portfolio", {
 
-				version: '1.0.0',
-				options: {
-					thumb_mode: 'carousel', // carousel|orbit
+		version: '2.0.0',
+		options: {
+			thumb_mode: 'carousel', // carousel|orbit
 			thumb_width: 75,
 			thumb_height: 75,
 			use_popup: true // Display full size images in a popup
-				},
+		},
 
-				_element_id: null,
-				_popup: null,
-				_popup_id: null,
-				_thumb_list: null, // Object to store thumb list
+		_element_id: null,
+		_popup: null,
+		_popup_id: null,
+		_thumb_list: null, // Object to store thumb list
 
 
 		_create: function () { var _this = this;			
@@ -117,13 +117,13 @@
 		_init_popup: function() { var _this = this;
 			if (this.options.use_popup) {
 				this._popup.popup({ 
-						trigger: '#'+this._element_id+'_thumbs a',
-						move_to_element: 'body',
-							size: 'portfolio',
-							on_open: function(link) {
-								_this.click_thumb(link);
-							}
-					});
+					trigger: '#'+this._element_id+'_thumbs a',
+					move_to_element: 'body',
+					size: 'portfolio',
+					on_open: function(link) {
+						_this.click_thumb(link);
+					}
+				});
 			} else {
 				$('#'+this._element_id+'_thumbs a').click(function() {
 					_this.click_thumb($(this));

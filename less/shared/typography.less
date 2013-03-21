@@ -9,8 +9,9 @@ h1, h2, h3, h4, h5, h6 {
 // Alignment
 //--------------------------------------------------
 
-.left { float: left; }
-.right { float: right; }
+// Remove these classes coz they break stuff!
+/* .left { float: left; } .right { float: right; } */
+
 .taj, .align_justify, .align-justify { text-align:justify; }
 .tac, .align_center, .align-center { text-align:center; }
 .tal, .align_left, .align-left { text-align:left; }
@@ -19,5 +20,5 @@ h1, h2, h3, h4, h5, h6 {
 .ttl, .lowercase { text-transform:lowercase; }
 .ttc, .capitalize { text-transform:capitalize; }
 
-.fl, .float_left, .pull_left, .pull-left { .left; }
-.fr, .float_right, .pull_right, .pull-right { .right; }
+.fl, .float_left, .pull_left, .pull-left { float: left; }
+.fr, .float_right, .pull_right, .pull-right { float: right; }

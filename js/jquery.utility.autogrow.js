@@ -6,7 +6,7 @@
 ;(function ($, window, document, undefined) {
 
 	$.widget("utility.autogrow", {
-		version: '1.0.0',
+		version: '2.0.0',
 		options: { 
 			offset: 30  // Height offset
 		},

@@ -10,7 +10,7 @@
 ;(function ($, window, document, undefined) {
 
 	$.widget("utility.statusbar", {
-		version: '1.0.4',
+		version: '2.0.0',
 		options: {
 			inject_to:  'body', // Element to prepend bar to
 			message:    '',     // Message to display in bar

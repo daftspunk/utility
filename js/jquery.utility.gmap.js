@@ -1,7 +1,7 @@
 ;(function ($, window, document, undefined) {
 
 	$.widget("utility.gmap", {
-		version: '1.1.1',
+		version: '2.0.0',
 		options: {
 			start_address: null,
 			start_position: [-34.397, 150.644], // Australia ;)

@@ -23,7 +23,7 @@
 
 	$.widget('utility.star_rating', {
 		options: {
-			version: '1.0.1',
+			version: '2.0.0',
 			input_type: 'select',          // Input element used (select, radio)
 			split: 0,                      // Decrease number of stars by splitting each star into pieces [2|3|4|...]
 			disabled: false,               // Set to [true] to make the stars initially disabled

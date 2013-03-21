@@ -1,7 +1,7 @@
 ;(function ($, window, document, undefined) {
 
 	$.widget("utility.gmap_locator", $.utility.gmap, {
-		version: '1.0.8',
+		version: '2.0.0',
 		options: {
 			on_show_content: null,        // Callback for when a location bubble is displayed
 			bubble_on_hover: true,        // Show the location bubble when a marker is hovered
@@ -49,6 +49,10 @@
 				events.mouseover = function (marker, event, data) { self.showContent(data.id, marker); };
 
 			this._add_to_chain(function() { 
+				// Only execute if there are some actual addresses
+				if (self._address_list.length <= 0)
+					return;
+
 				if (self._is_built)
 					self.updateMarkers(self._address_list, events, self._animation_obj, self.options.cleanup_markers); 
 				else
@@ -60,9 +64,7 @@
 				self._is_built = true;
 			});
 
-			// Only execute if there are some actual addresses
-			if (this._address_list.length > 0 )
-				this._execute_chain();
+			this._execute_chain();
 		},
 
 		_reset: function() {
@@ -105,8 +107,9 @@
 					var latlng = addressLatLng.split(',');
 					self._add_to_chain(self._add_location(latlng[0], latlng[1], data));
 				}
-				else if (data.address)
+				else if (data.address) {					
 					self._add_to_chain(self._add_location_from_string(data.address, data));
+				}
 			});
 		},
 

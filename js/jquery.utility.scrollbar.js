@@ -1,7 +1,7 @@
 ;(function ($, window, document, undefined) {
 
     $.widget("utility.scrollbar", {
-        version: '1.0.5',
+        version: '2.0.0',
         options: {
             axis:           'vertical', // Vertical or horizontal scrollbar?
             wheel:          40,         // How many pixels to scroll at a time

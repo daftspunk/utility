@@ -1,7 +1,7 @@
 ;(function ($, window, document, undefined) {
 
 	$.widget("utility.uploader", {
-		version: '1.0.5',
+		version: '2.0.0',
 		options: { 
 
 			mode: 'single_image',      // Options: single_image|multi_image
