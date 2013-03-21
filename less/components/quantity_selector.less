@@ -26,13 +26,13 @@ span.custom-input-quantity {
 		color: lighten(@linkColor, 40%);
 		border: 1px solid darken(@primaryColor, 10%);
 		background-color: darken(@primaryColor, 10%);
-		/* TODO: nandesuka: .background-image(linear-gradient(top, lighten(@primaryColor,5%), darken(@primaryColor,5%) )); */
-		.box-shadow(0 1px 0 @shinyEdge inset, 0 1px 1px darken(@primaryColor,20%) inset);
+		#gradient > .vertical(lighten(@primaryColor,5%), darken(@primaryColor,5%)); 
+		.box-shadow(0 1px 0 @grayLighter inset, 0 1px 1px darken(@primaryColor,20%) inset);
 
 		span { display: block; text-indent: -99999px; line-height: 0; overflow: hidden; }
-		/* TODO: nandesuka: &:hover { .background-image(linear-gradient(top, lighten(@primaryColor,8%), darken(@primaryColor,8%) )); background-color: darken(@primaryColor, 13%); color: lighten(@linkColor, 20%); } */
-	    &:active  { .box-shadow(0 1px 0 @darkEdge inset); }
-	    &:focus { .box-shadow(0 0 4px opacify(@mainColor, 0.3), 0 1px 0 @shinyEdge inset); color: @white; }
+		&:hover { #gradient > .vertical (lighten(@primaryColor,8%), darken(@primaryColor,8%)); background-color: darken(@primaryColor, 13%); color: lighten(@linkColor, 20%); }
+	    &:active  { .box-shadow(0 1px 0 @grayDark inset); }
+	    &:focus { .box-shadow(0 0 4px opacify(@primaryColor, 0.3), 0 1px 0 @grayLighter inset); color: @white; }
 		&.up { top: 0; border-bottom: none; .border-radius(2px 4px 0 0);
 			&:before { content: "\f0d8"; }
 		}
