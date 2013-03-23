@@ -14,7 +14,7 @@
 			on_open:           null,           // Callback when popup opens
 			on_close:          null,           // Callback when popup closes
 			trigger:           null,           // Trigger to open
-			extra_close:       '.popup_close', // Trigger to close
+			extra_close:       '.popup-close', // Trigger to close
 			show_close:        true,           // Show the X to close
 			close_on_esc_press: true,          // If you press escape close popup?
 			move_to_element:   false,          // Move the popup to another element
