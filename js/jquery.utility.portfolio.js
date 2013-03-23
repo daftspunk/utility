@@ -14,12 +14,12 @@
 
 	$.widget("utility.portfolio", {
 
-		version: '2.0.0',
+		version: '2.0.1',
 		options: {
-			thumb_mode: 'carousel', // carousel|orbit
-			thumb_width: 75,
-			thumb_height: 75,
-			use_popup: true // Display full size images in a popup
+			thumbMode: 'carousel', // carousel|orbit
+			thumbWidth: 75,
+			thumbHeight: 75,
+			usePopup: true // Display full size images in a popup
 		},
 
 		_element_id: null,
@@ -40,9 +40,9 @@
 			this._popup = $('#'+this._popup_id);
 
 			// Init thumbs
-			if (this.options.thumb_mode == 'carousel')
+			if (this.options.thumbMode == 'carousel')
 				_this._init_carousel_thumbs();
-			else if (this.options.thumb_mode == 'orbit')
+			else if (this.options.thumbMode == 'orbit')
 				_this._init_orbit_thumbs();
 
 			// If we have no images, do not proceed
@@ -52,9 +52,9 @@
 			// Init Orbit
 			this.element.not('.orbit-enabled').addClass('orbit-enabled').orbit({
 				animation: 'horizontal-push',
-				bullets: this.options.use_popup,
+				bullets: this.options.usePopup,
 				captions: true,
-				directionalNav: this.options.use_popup,
+				directionalNav: this.options.usePopup,
 				fluid: true,
 				timer: false
 			});
@@ -77,8 +77,8 @@
 				var thumb = $('<img />').attr({
 					src: thumb_src,
 					'data-image-id': image_id,
-					width: _this.options.thumb_width,
-					height: _this.options.thumb_height
+					width: _this.options.thumbWidth,
+					height: _this.options.thumbHeight
 				});
 				var thumb_list_anchor = anchor.append(thumb);
 				_this._thumb_list.append($('<li />').append(thumb_list_anchor));
@@ -100,8 +100,8 @@
 				var thumb = $('<img />').attr({
 					src: thumb_src,
 					'data-image-id': image_id
-					//width: _this.options.thumb_width,
-					//height: _this.options.thumb_height
+					//width: _this.options.thumbWidth,
+					//height: _this.options.thumbHeight
 				});
 				var thumb_list_anchor = anchor.append(thumb);
 				_this._thumb_list.append(thumb_list_anchor);
@@ -115,7 +115,7 @@
 		},
 
 		_init_popup: function() { var _this = this;
-			if (this.options.use_popup) {
+			if (this.options.usePopup) {
 				this._popup.popup({ 
 					trigger: '#'+this._element_id+'_thumbs a',
 					moveToElement: 'body',
