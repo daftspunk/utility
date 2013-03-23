@@ -13,7 +13,8 @@
 			on_success: null,          // Triggered when image is uploaded
 			on_start: null,            // Triggered when upload process starts
 			on_error: null,            // Triggered if there is an error
-			
+			hide_input: true,          // Hide the linked <input> element
+
 			// Single image specific (mode: single_image)
 			image_id: '#upload_image', // Image preview selector 
 			allow_reupload: true,      // Allow image overwrite 
@@ -40,6 +41,9 @@
 
 			if (this.options.link_id)
 				$(this.options.link_id).click(function() { self.element.trigger('click'); });
+
+			if (this.options.hide_input)
+				this.element.css({ position:'absolute', visibility:'hidden' });
 
 			if (this.options.mode == 'single_image') {
 				this.bind_single_image_upload();
@@ -174,7 +178,7 @@
 			});
 		},
 
-		add_multi_image: function(src, id) {
+		add_multi_image: function(src, id) { var self = this;
 			var image = self.el_panel.find('div.loading:first');
 			image.removeClass('loading').css('background-image', 'url('+src+')');
 
