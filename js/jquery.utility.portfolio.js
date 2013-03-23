@@ -118,9 +118,9 @@
 			if (this.options.use_popup) {
 				this._popup.popup({ 
 					trigger: '#'+this._element_id+'_thumbs a',
-					move_to_element: 'body',
+					moveToElement: 'body',
 					size: 'portfolio',
-					on_open: function(link) {
+					onOpen: function(link) {
 						_this.click_thumb(link);
 					}
 				});

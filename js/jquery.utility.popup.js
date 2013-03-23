@@ -9,23 +9,23 @@
 ;(function ($, window, document, undefined) {
 
 	$.widget("utility.popup", {
-		version: '2.0.0',
+		version: '2.0.1',
 		options: {
-			on_open:           null,           // Callback when popup opens
-			on_close:          null,           // Callback when popup closes
+			onOpen:            null,           // Callback when popup opens
+			onClose:           null,           // Callback when popup closes
 			trigger:           null,           // Trigger to open
-			extra_close:       '.popup-close', // Trigger to close
-			show_close:        true,           // Show the X to close
-			close_on_esc_press: true,          // If you press escape close popup?
-			move_to_element:   false,          // Move the popup to another element
+			extraClose:        '.popup-close', // Trigger to close
+			showClose:         true,           // Show the X to close
+			closeOnEscPress:   true,          // If you press escape close popup?
+			moveToElement:     false,          // Move the popup to another element
 			size:              null,           // Options: small, medium, large, xlarge, expand
-			auto_reveal:       false,          // Show popup when page opens?
+			autoReveal:        false,          // Show popup when page opens?
 			
 			// PHPR Specific
 			action:            'on_action',    // PHPR AJAX Action
 			partial:           null,           // Dynamically load a PHPR partial
-			partial_data:      null,           // Data to send along with the PHPR partial request
-			cache_partial:     false           // Cache the PHPR partial content
+			partialData:      null,           // Data to send along with the PHPR partial request
+			cachePartial:     false           // Cache the PHPR partial content
 		},
 
 		// Internals
@@ -42,7 +42,7 @@
 			}
 
 			this._modal_options = {
-				keyboard: this.options.close_on_esc_press				
+				keyboard: this.options.closeOnEscPress				
 			};
 
 			this._partial_name = this.options.partial;
@@ -74,7 +74,7 @@
 			}
 
 			// Popup closing
-			this.element.find(this.options.extra_close).off('click.utility.popup')
+			this.element.find(this.options.extraClose).off('click.utility.popup')
 				.on('click.utility.popup', function() {
 					self.closePopup();
 				});
@@ -91,11 +91,11 @@
 				close_cross.prependTo(this.element.find('.modal-body'));
 
 			// Move the popup to a more suitable position
-			if (this.options.move_to_element)
-				this.element.prependTo($(this.options.move_to_element));  
+			if (this.options.moveToElement)
+				this.element.prependTo($(this.options.moveToElement));  
 
 			// Auto reveal
-			if (this.options.auto_reveal) {
+			if (this.options.autoReveal) {
 				self._handle_partial($(this));
 				self.openPopup($(this));
 			}
@@ -108,16 +108,16 @@
 		openPopup: function(triggered_by) { var self = this;
 
 			// Open event
-			this.options.on_open && this.element.unbind('shown').bind('shown', this.options.on_open.apply(this, [triggered_by]));
+			this.options.onOpen && this.element.unbind('shown').bind('shown', this.options.onOpen.apply(this, [triggered_by]));
 
 			// Close event
-			this.options.on_close && this.element.unbind('hide').bind('hide', this.options.on_close.apply(this, [triggered_by]));
+			this.options.onClose && this.element.unbind('hide').bind('hide', this.options.onClose.apply(this, [triggered_by]));
 			
 			this.element.modal(this._modal_options);
 			
 			// Reset cache if necessary
 			this.element.bind('hide', function(){ 
-				if (!self.options.cache_partial)
+				if (!self.options.cachePartial)
 					self.reset_cache();
 			}); 
 
@@ -147,7 +147,7 @@
 					update_object[container_id] = this._partial_name;
 
 				// Halt here for partial cache
-				if (this.options.cache_partial && this._partial_loaded) {
+				if (this.options.cachePartial && this._partial_loaded) {
 					// @todo This will pollute the DOM with it's leftover
 					// reveal containers, should clean these up
 					$(container_id).appendTo(this.element);
@@ -160,7 +160,7 @@
 				// Request partial content
 				$('<form />').sendRequest(self.options.action, { 
 					update: update_object, 
-					extraFields: this.options.partial_data,
+					extraFields: this.options.partialData,
 					onSuccess: function() { 
 						$(container_id)
 							.addClass('partial-content-loaded')
@@ -176,7 +176,7 @@
 		_partial_build_container: function() {
 
 			// Look for a cached partial container
-			if (this.options.cache_partial) {
+			if (this.options.cachePartial) {
 				var existing_partial = $('div[rel="'+this._partial_name+'"]');
 				if (existing_partial.length > 0 && existing_partial.hasClass('modal-content-partial')) {
 					this._partial_container_id = existing_partial.attr('id');

@@ -1,29 +1,29 @@
 ;(function ($, window, document, undefined) {
 
 	$.widget("utility.uploader", {
-		version: '2.0.0',
+		version: '2.0.1',
 		options: { 
 
-			mode: 'single_image',        // Options: single_image|multi_image
-			link_id: null,               // Upload link selector
-			remove_id: null,             // Remove image link selector
-			param_name: 'image',         // POST parameter used for postbacks (use images[] for multi)
-			extra_data: null,            // Extra POST data to send with each request (defaults to parent form data)
-			on_remove: null,             // Triggered when image is removed
-			on_success: null,            // Triggered when image is uploaded
-			on_start: null,              // Triggered when upload process starts
-			on_error: null,              // Triggered if there is an error
-			hide_input: true,            // Hide the linked <input> element
-			image_class: '',             // Class to assign to uploaded image(s)
+			mode: 'single_image',       // Options: single_image|multi_image
+			linkId: null,               // Upload link selector
+			removeId: null,             // Remove image link selector
+			paramName: 'image',         // POST parameter used for postbacks (use images[] for multi)
+			extraData: null,            // Extra POST data to send with each request (defaults to parent form data)
+			onRemove: null,             // Triggered when image is removed
+			onSuccess: null,            // Triggered when image is uploaded
+			onStart: null,              // Triggered when upload process starts
+			onError: null,              // Triggered if there is an error
+			hideInput: true,            // Hide the linked <input> element
+			imageClass: '',             // Class to assign to uploaded image(s)
 
 			// Single image specific (mode: single_image)
-			image_id: '#upload_image',   // Image preview selector 
-			allow_reupload: true,        // Allow image overwrite 
-			existing_img_src: null,      // If image is already populated
+			imageId: '#upload_image',   // Image preview selector 
+			allowReupload: true,        // Allow image overwrite 
+			existingImgSrc: null,       // If image is already populated
 
 			// Multi image specific (mode: multi_image)
-			panel_id:'#panel_photos',
-			list_item_class: ''          // Class to assign to image list item
+			panelId:'#panel_photos',
+			listItemClass: ''           // Class to assign to image list item
 		},
 
 		el_remove: null,
@@ -33,18 +33,18 @@
 
 		_create: function () { var self = this;
 			
-			this.el_image = $(this.options.image_id);
+			this.el_image = $(this.options.imageId);
 
-			if (this.options.remove_id)
-				this.el_remove = $(this.options.remove_id);
+			if (this.options.removeId)
+				this.el_remove = $(this.options.removeId);
 			
-			if (this.options.panel_id)
-				this.el_panel = $(this.options.panel_id);
+			if (this.options.panelId)
+				this.el_panel = $(this.options.panelId);
 
-			if (this.options.link_id)
-				$(this.options.link_id).click(function() { self.element.trigger('click'); });
+			if (this.options.linkId)
+				$(this.options.linkId).click(function() { self.element.trigger('click'); });
 
-			if (this.options.hide_input)
+			if (this.options.hideInput)
 				this.element.css({ position:'absolute', visibility:'hidden' });
 
 			if (this.options.mode == 'single_image') {
@@ -62,17 +62,17 @@
 			uploader_options = $.extend(true, {
 				dataType: 'json',
 				//url: '',
-				paramName: this.options.param_name,
+				paramName: this.options.paramName,
 				type: 'POST',       
 			}, uploader_options);
 
-			if (this.options.extra_data) {
+			if (this.options.extraData) {
 				uploader_options.formData = function(form) {
 					if (self.form_data)
 						return self.form_data;
 
 					data = form.serializeArray();
-					$.each(self.options.extra_data, function (name, value) {
+					$.each(self.options.extraData, function (name, value) {
 						data.push({name: name, value: value});
 					});
 
@@ -80,8 +80,8 @@
 				}
 			}
 			
-			if (this.options.on_start)
-				uploader_options.start = this.options.on_start;
+			if (this.options.onStart)
+				uploader_options.start = this.options.onStart;
 
 			this.element.fileupload(uploader_options); 
 		},
@@ -93,8 +93,8 @@
 			this.bind_uploader({
 				done: function (e, data) {
 					self.add_single_image(data.result.thumb, data.result.id);
-					self.options.on_success && self.options.on_success(self, data);
-					self.options.allow_reupload && self.bind_single_image_upload();   
+					self.options.onSuccess && self.options.onSuccess(self, data);
+					self.options.allowReupload && self.bind_single_image_upload();   
 				},            
 				add: function(e, data) {
 					self.el_image.fadeTo(500, 0);
@@ -103,15 +103,15 @@
 				fail: function(e, data) {
 					alert('Oops! Looks like there was an error uploading your photo, try a different one or send us an email! (' + data.errorThrown + ')')
 					self.el_image.fadeTo(1000, 1);
-					self.options.on_error && self.options.on_error(self, data);
+					self.options.onError && self.options.onError(self, data);
 				} 
 			});
 
-			if (!self.options.existing_img_src)
-				self.options.existing_img_src = self.element.data('existing-image');
+			if (!self.options.existingImgSrc)
+				self.options.existingImgSrc = self.element.data('existing-image');
 
-			if (self.options.existing_img_src) 
-				self.add_single_image(self.options.existing_img_src);
+			if (self.options.existingImgSrc) 
+				self.add_single_image(self.options.existingImgSrc);
 		},
 
 		bind_single_image_remove: function() { var self = this;
@@ -121,7 +121,7 @@
 					self.el_remove.hide();
 					
 					var file_id = self.el_image.attr('data-image-id');
-					if (!self.options.on_remove || (self.options.on_remove && (self.options.on_remove(self, file_id))!==false))  {
+					if (!self.options.onRemove || (self.options.onRemove && (self.options.onRemove(self, file_id))!==false))  {
 						self.el_image.fadeTo(500, 0, function() {
 							var blank_src = self.el_image.attr('data-blank-src');
 							if (blank_src) {
@@ -155,11 +155,11 @@
 			this.bind_uploader({
 				done: function (e, data) {
 					self.add_multi_image(data.result.thumb, data.result.id);
-					self.options.on_success && self.options.on_success(self, data);
+					self.options.onSuccess && self.options.onSuccess(self, data);
 					self.bind_multi_image_upload();
 				},            
 				add: function(e, data) {
-					self.el_panel.show().children('ul:first').append('<li class="'+self.options.list_item_class+'">'
+					self.el_panel.show().children('ul:first').append('<li class="'+self.options.listItemClass+'">'
 						+ '<div class="thumbnail loading">'
 						+ '<a href="javascript:;" class="remove">Remove</a>'
 						+ '</div>'
@@ -178,7 +178,7 @@
 						self.el_panel.hide();
 
 					var file_id = photo.attr('data-image-id');
-					self.options.on_remove && self.options.on_remove(self, file_id);
+					self.options.onRemove && self.options.onRemove(self, file_id);
 
 				});
 			});
@@ -187,7 +187,7 @@
 		add_multi_image: function(src, id) { var self = this;
 			var imageContainer = self.el_panel.find('div.loading:first');
 			var image = $('<img />').attr('src', src).attr('alt', '')
-				.addClass(this.options.image_class);
+				.addClass(this.options.imageClass);
 
 			imageContainer.removeClass('loading').append(image);
 				
