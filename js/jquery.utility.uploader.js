@@ -4,24 +4,26 @@
 		version: '2.0.0',
 		options: { 
 
-			mode: 'single_image',      // Options: single_image|multi_image
-			link_id: null,             // Upload link selector
-			remove_id: null,           // Remove image link selector
-			param_name: 'image',       // POST parameter used for postbacks (use images[] for multi)
-			extra_data: null,          // Extra POST data to send with each request (defaults to parent form data)
-			on_remove: null,           // Triggered when image is removed
-			on_success: null,          // Triggered when image is uploaded
-			on_start: null,            // Triggered when upload process starts
-			on_error: null,            // Triggered if there is an error
-			hide_input: true,          // Hide the linked <input> element
+			mode: 'single_image',        // Options: single_image|multi_image
+			link_id: null,               // Upload link selector
+			remove_id: null,             // Remove image link selector
+			param_name: 'image',         // POST parameter used for postbacks (use images[] for multi)
+			extra_data: null,            // Extra POST data to send with each request (defaults to parent form data)
+			on_remove: null,             // Triggered when image is removed
+			on_success: null,            // Triggered when image is uploaded
+			on_start: null,              // Triggered when upload process starts
+			on_error: null,              // Triggered if there is an error
+			hide_input: true,            // Hide the linked <input> element
+			image_class: '',             // Class to assign to uploaded image(s)
 
 			// Single image specific (mode: single_image)
-			image_id: '#upload_image', // Image preview selector 
-			allow_reupload: true,      // Allow image overwrite 
-			existing_img_src: null,    // If image is already populated
+			image_id: '#upload_image',   // Image preview selector 
+			allow_reupload: true,        // Allow image overwrite 
+			existing_img_src: null,      // If image is already populated
 
 			// Multi image specific (mode: multi_image)
-			panel_id:'#panel_photos'
+			panel_id:'#panel_photos',
+			list_item_class: ''          // Class to assign to image list item
 		},
 
 		el_remove: null,
@@ -47,10 +49,10 @@
 
 			if (this.options.mode == 'single_image') {
 				this.bind_single_image_upload();
-				this.bind_single_image_remove();            
+				this.bind_single_image_remove();
 			} else if (this.options.mode == 'multi_image') {
 				this.bind_multi_image_upload();
-				this.bind_multi_image_remove();            
+				this.bind_multi_image_remove();
 			}
 		},
 
@@ -157,7 +159,11 @@
 					self.bind_multi_image_upload();
 				},            
 				add: function(e, data) {
-					self.el_panel.show().children('ul:first').append('<li><div class="image loading"><a href="javascript:;" class="remove">Remove</a></div></li>');
+					self.el_panel.show().children('ul:first').append('<li class="'+self.options.list_item_class+'">'
+						+ '<div class="thumbnail loading">'
+						+ '<a href="javascript:;" class="remove">Remove</a>'
+						+ '</div>'
+						+ '</li>');
 					data.submit();
 				}
 			}); 
@@ -179,11 +185,14 @@
 		},
 
 		add_multi_image: function(src, id) { var self = this;
-			var image = self.el_panel.find('div.loading:first');
-			image.removeClass('loading').css('background-image', 'url('+src+')');
+			var imageContainer = self.el_panel.find('div.loading:first');
+			var image = $('<img />').attr('src', src).attr('alt', '')
+				.addClass(this.options.image_class);
 
+			imageContainer.removeClass('loading').append(image);
+				
 			if (id)
-				image.attr('data-image-id', id);
+				imageContainer.attr('data-image-id', id);
 		}
 
 	});
