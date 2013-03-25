@@ -142,6 +142,6 @@
 			$.Widget.prototype.destroy.call(this);
 			this._popup.remove();
 		}
-		});
+	});
 
 })( jQuery, window, document );
