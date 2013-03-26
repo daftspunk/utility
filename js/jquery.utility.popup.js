@@ -9,7 +9,7 @@
 ;(function ($, window, document, undefined) {
 
 	$.widget("utility.popup", {
-		version: '2.0.1',
+		version: '2.0.2',
 		options: {
 			onOpen:            null,           // Callback when popup opens
 			onClose:           null,           // Callback when popup closes
@@ -66,8 +66,8 @@
 			if (this.options.trigger) {
 				var trigger = $(this.options.trigger);
 
-				trigger.off('click.utility.popup')
-					.on('click.utility.popup', function() {
+				trigger.die('click.utility.popup')
+					.live('click.utility.popup', function() {
 						self._handle_partial($(this));
 						self.openPopup($(this));
 					});
@@ -80,15 +80,16 @@
 				});
 
 			// Add close cross
-			var close_cross = $('<a />').addClass('close').data('dismiss', 'modal').html('&#215;')
+			var closeCross = $('<a />').addClass('close')				
+				.data('dismiss', 'modal').html('&#215;')
 				.on('click.utility.popup', function() { self.closePopup(); });
 
 			var crossContainer = this.element.find('.modal-header');
 
 			if (crossContainer.length > 0)
-				close_cross.prependTo(crossContainer);
+				closeCross.prependTo(crossContainer);
 			else
-				close_cross.prependTo(this.element.find('.modal-body'));
+				closeCross.prependTo(this.element.find('.modal-body'));
 
 			// Move the popup to a more suitable position
 			if (this.options.moveToElement)
@@ -108,11 +109,15 @@
 		openPopup: function(triggered_by) { var self = this;
 
 			// Open event
-			this.options.onOpen && this.element.unbind('shown').bind('shown', this.options.onOpen.apply(this, [triggered_by]));
+			this.options.onOpen && this.element.off('shown').on('shown', function() { 
+				self.options.onOpen.apply(self, [triggered_by]);
+			});
 
 			// Close event
-			this.options.onClose && this.element.unbind('hide').bind('hide', this.options.onClose.apply(this, [triggered_by]));
-			
+			this.options.onClose && this.element.off('hide').on('hide', function() { 
+				self.options.onClose.apply(self, [triggered_by]);
+			});
+
 			this.element.modal(this._modal_options);
 			
 			// Reset cache if necessary
