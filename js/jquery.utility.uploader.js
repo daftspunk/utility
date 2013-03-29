@@ -63,9 +63,10 @@
 				dataType: 'json',
 				//url: '',
 				paramName: this.options.paramName,
-				type: 'POST',       
+				type: 'POST',
 			}, uploader_options);
 
+			// Splice in extraData with form data
 			if (this.options.extraData) {
 				uploader_options.formData = function(form) {
 					if (self.form_data)
