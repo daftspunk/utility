@@ -1,3 +1,15 @@
+/**
+ * 
+ * Usage examples
+ * 
+ * Creates a map with a marker at a geocoded address:
+ * 
+ * var address_string = '1 Street Place, Somewhere';
+ * $('#map').gmap({start_address: address_string, disable_control: true})
+ *	 	.gmap('addMarkerFromAddressString', address_string, null, { zoom: 9 });
+ * 
+ */
+
 ;(function ($, window, document, undefined) {
 
 	$.widget("utility.gmap", {

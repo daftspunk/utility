@@ -21,7 +21,7 @@
  */
 ;(function ($, window, document, undefined) {
 
-	$.widget('utility.star_rating', {
+	$.widget('utility.starRating', {
 		options: {
 			version: '2.0.0',
 			input_type: 'select',          // Input element used (select, radio)
