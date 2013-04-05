@@ -9,6 +9,11 @@
 //--------------------------------------------------
 
 .label {
+    &.huge {
+        font-weight: normal;
+        font-size: ms(6);
+        &.round { padding: 8px 13px; }
+    }
     &.big {
         font-weight: normal;
         font-size: ms(3);
