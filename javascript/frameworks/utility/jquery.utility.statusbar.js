@@ -66,7 +66,7 @@
                         .addClass(value);
                     break;
                 case "message":
-                    this.show_message(value);
+                    this.showMessage(value);
                     break;
             }
             this.options[key] = value;
@@ -76,7 +76,7 @@
             $.Widget.prototype.destroy.call(this);
         },
 
-        show_message: function(message, params) { var self = this; 
+        showMessage: function(message, params) { var self = this; 
             this._set_timer();
             this._message.html(message);
             
