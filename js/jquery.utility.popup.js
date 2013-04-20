@@ -9,7 +9,7 @@
 ;(function ($, window, document, undefined) {
 
 	$.widget("utility.popup", {
-		version: '2.0.2',
+		version: '2.0.3',
 		options: {
 			onOpen:            null,           // Callback when popup opens
 			onClose:           null,           // Callback when popup closes
@@ -54,9 +54,7 @@
 			$.Widget.prototype.destroy.call(this);
 		},
 
-		_build: function() {
-
-			var self = this;
+		_build: function() { var self = this;
 
 			this.element.addClass('modal');
 			if (this.options.size)
@@ -80,16 +78,7 @@
 				});
 
 			// Add close cross
-			var closeCross = $('<a />').addClass('close')				
-				.data('dismiss', 'modal').html('&#215;')
-				.on('click.utility.popup', function() { self.closePopup(); });
-
-			var crossContainer = this.element.find('.modal-header');
-
-			if (crossContainer.length > 0)
-				closeCross.prependTo(crossContainer);
-			else
-				closeCross.prependTo(this.element.find('.modal-body'));
+			this._build_close_cross();
 
 			// Move the popup to a more suitable position
 			if (this.options.moveToElement)
@@ -101,6 +90,22 @@
 				self.openPopup($(this));
 			}
 
+		},
+
+		_build_close_cross: function() { var self = this;
+			var closeCross = $('<a />').addClass('close')				
+				.data('dismiss', 'modal').html('&#215;')
+				.on('click.utility.popup', function() { self.closePopup(); });
+
+			var crossContainer = self.element.find('.modal-header');
+
+			if (!crossContainer.length)
+				crossContainer = self.element.find('.modal-body');
+			
+			if (crossContainer.find('a.close').length > 0)
+				return;
+
+			closeCross.prependTo(crossContainer);
 		},
 
 		// Service methods
