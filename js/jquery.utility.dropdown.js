@@ -24,10 +24,10 @@
 
 				var $m = $(this).children(".dropdown-menu, .sidebar-dropdown-menu");
 				if ($m.css('display') == "block") {
-					$m.slideUp('fast');
+					$m.stop(0, 1).slideUp('fast');
 					$(this).removeClass("active");
 				} else {
-					$m.slideDown('fast');
+					$m.stop(0, 1).slideDown('fast');
 					$(this).addClass("active");
 				}
 			}).on("mouseleave", function(){
