@@ -1,12 +1,15 @@
 
 /**
- * Custom Forms Widget
+ * Spinner widget (DEPRECATED)
+ * 
+ * DEPRECATED: suggest using native UI spinner:
+ * http://jqueryui.com/spinner/
  */
 
 ;(function ($, window, document, undefined) {
 
-	$.widget("utility.forms", {
-		version: '2.0.0',
+	$.widget("utility.spinner", {
+		version: '2.0.1',
 		options: { },
 
 		_create: function () { 
