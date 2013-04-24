@@ -5,7 +5,7 @@
 ;(function ($, window, document, undefined) {
 
 	$.widget("utility.filestyle", {
-		version: '1.0.0',
+		version: '1.0.1',
 		options: { 
 			buttonText : 'Choose file',
 			textField : true,
@@ -18,14 +18,16 @@
 		_container: null,
 
 		_init: function () { 
+
+			// Sanity check
+			if (this.element.attr('type') != "file")
+				return;
+
 			this.build();
 		},
 
-		// Quantity Control
-		//
-
 		build: function() { var self = this;
-
+			
 			self.element.data('filestyle', true);
 
 			// Modify and wrap element
@@ -62,6 +64,13 @@
 		clear: function() { var self = this;
 			self._container.children(':text').val('');
 			self.element.val('');
+		},
+
+		destroy: function () {
+			if (this._container)
+				this._container.remove();
+
+			$.Widget.prototype.destroy.call(this);			
 		}
 
 	});
