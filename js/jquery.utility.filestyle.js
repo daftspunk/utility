@@ -5,7 +5,7 @@
 ;(function ($, window, document, undefined) {
 
 	$.widget("utility.filestyle", {
-		version: '1.0.1',
+		version: '1.0.2',
 		options: { 
 			buttonText : 'Choose file',
 			textField : true,
@@ -66,11 +66,9 @@
 			self.element.val('');
 		},
 
-		destroy: function () {
+		remove: function () {
 			if (this._container)
 				this._container.remove();
-
-			$.Widget.prototype.destroy.call(this);			
 		}
 
 	});
