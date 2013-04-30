@@ -9,7 +9,7 @@
 ;(function ($, window, document, undefined) {
 
 	$.widget("utility.spinner", {
-		version: '2.0.1',
+		version: '2.0.2',
 		options: { },
 
 		_create: function () { 
@@ -24,7 +24,7 @@
 		//
 
 		build_quantity_input: function() { var _this = this;
-			var inputs = $('input.input-quantity').not('.input-quantity-ready').addClass('input-quantity-ready');
+			var inputs = $('input.input-spinner').not('.input-spinner-ready').addClass('input-spinner-ready');
 			inputs.each(function() {
 				var element = $(this);
 				
@@ -38,11 +38,11 @@
 					.append('<span>Down</span>')
 					.attr('href', 'javascript:;');
 				
-				element.wrap($('<span />').addClass('custom-input-quantity'))
+				element.wrap($('<span />').addClass('utility-spinner'))
 					.after(down_arrow)
 					.after(up_arrow);
 
-				element.closest('span.custom-input-quantity')
+				element.closest('span.utility-spinner')
 					.find('.arrow')
 					.click(_this._click_quantity_input);
 			});
@@ -52,8 +52,8 @@
 			var element = $(this);
 			var quantity = 1;
 			var input_field = element
-				.closest('span.custom-input-quantity')
-				.find('input.input-quantity');
+				.closest('span.utility-spinner')
+				.find('input.input-spinner');
 
 			var value = parseInt(input_field.val());
 
