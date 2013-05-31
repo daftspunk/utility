@@ -13,7 +13,7 @@
 ;(function ($, window, document, undefined) {
 
 	$.widget("utility.gmap", {
-		version: '2.0.0',
+		version: '2.0.1',
 		options: {
 			start_address: null,
 			start_position: [-34.397, 150.644], // Australia ;)
@@ -318,7 +318,7 @@
 		// Filter, Returns object {lat,lng}
 		getLatLngFromAddressObject: function(addressObj) {
 			var result = { lat:false, lng: false };
-			if (addressObj.geometry && addressObj.geometry.location) {
+			if (addressObj && addressObj.geometry && addressObj.geometry.location) {
 				result = { 
 					lat: addressObj.geometry.location.lat(), 
 					lng: addressObj.geometry.location.lng() 
@@ -347,7 +347,10 @@
 		// Value can be: country, postal_code
 		getValueFromAddressObject: function(addressObj, value, options) {
 			var self = this;
-			var result = null;      
+			var result = null;
+
+			if (!addressObj)
+				return null;
 
 			for (i = 0; i < addressObj.address_components.length; i++) {
 				for (j = 0; j < addressObj.address_components[i].types.length; j++) {
