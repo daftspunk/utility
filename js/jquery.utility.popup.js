@@ -9,7 +9,7 @@
 ;(function ($, window, document, undefined) {
 
 	$.widget("utility.popup", {
-		version: '2.0.3',
+		version: '2.0.4',
 		options: {
 			onOpen:            null,           // Callback when popup opens
 			onClose:           null,           // Callback when popup closes
@@ -24,8 +24,8 @@
 			// PHPR Specific
 			action:            'on_action',    // PHPR AJAX Action
 			partial:           null,           // Dynamically load a PHPR partial
-			partialData:      null,           // Data to send along with the PHPR partial request
-			cachePartial:     false           // Cache the PHPR partial content
+			partialData:       null,           // Data to send along with the PHPR partial request
+			cachePartial:      false           // Cache the PHPR partial content
 		},
 
 		// Internals
