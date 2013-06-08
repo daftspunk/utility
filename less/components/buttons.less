@@ -1,3 +1,6 @@
+// Link Buttons
+//-----------------------------------------------
+
 .link-button {
 	background-color: @secondaryColor; 
 	color: darken((@secondaryColor), 80%); 
@@ -19,4 +22,36 @@
 a:hover.link-button, a:hover > span.link-button {
 	background-color: @primaryColor;
 	color: @white;
+}
+
+// Buttons w/ Icons
+//-----------------------------------------------
+
+.btn {
+	&.btn-icon {
+		padding-left: 35px;
+		position: relative;
+		i { position:absolute; line-height:30px; vertical-align: middle; left:0; top:0; bottom:0; font-size:15px; background: rgba(0,0,0,.2); width:30px; }
+	}
+}
+
+.btn-mini {
+	&.btn-icon {
+		padding-left: 23px;
+		i { font-size: @fontSizeMini; line-height:24px; width:18px; }
+	}
+}
+
+.btn-small {
+	&.btn-icon {
+		padding-left: 26px;
+		i { font-size: @fontSizeSmall; line-height:24px; width:20px; }
+	}
+}
+
+.btn-large {
+	&.btn-icon {
+		padding-left: 50px;
+		i { font-size: @fontSizeLarge; line-height:45px; width:40px; }
+	}	
 }
