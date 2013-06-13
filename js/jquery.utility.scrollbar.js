@@ -1,7 +1,7 @@
 ;(function ($, window, document, undefined) {
 
     $.widget("utility.scrollbar", {
-        version: '2.0.0',
+        version: '2.0.1',
         options: {
             axis:           'vertical', // Vertical or horizontal scrollbar?
             wheel:          40,         // How many pixels to scroll at a time
@@ -132,10 +132,10 @@
             this._is_visible = (this.getScrollSize() > this.getPanelSize());            
         },
 
-        setPosition: function(scroll_legnth) {
+        setPosition: function(scroll_length) {
             var allowableLength = this.getScrollSize() - this.getPanelSize();
-            if (scroll_legnth < allowableLength)
-                this.update(scroll_legnth);
+            if (scroll_length < allowableLength)
+                this.update(scroll_length);
             else
                 this.update('bottom');
 
