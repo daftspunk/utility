@@ -168,17 +168,17 @@
 				$(container_id).empty().append($('<div />').addClass('modal-popup-loading'));
 				
 				// Request partial content
-				$('<form />').sendRequest(self.options.action, { 
+				$('<form />').phpr().post(self.options.action, { 
 					update: update_object, 
-					extraFields: this.options.partialData,
-					onSuccess: function() { 
+					data: this.options.partialData,
+					success: function() { 
 						$(container_id)
 							.addClass('partial-content-loaded')
 							.attr('rel', self._partial_name);
 
 						self._partial_loaded = true;
 					}
-				});
+				}).send();
 			}
 
 		},
