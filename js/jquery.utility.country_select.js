@@ -8,7 +8,7 @@
 ;(function ($, window, document, undefined) {
 
 	$.widget("utility.countrySelect", {
-		version: '1.0.1',
+		version: '1.0.2',
 		options: {
 			afterUpdate: null,    // Callback after state has updated
 
@@ -28,12 +28,12 @@
 
 			this.element.on('change', function() {
 
-				var postObj = Ahoy.post(self.element)
+				var postObj = $(self.element).phpr().post()
 					.action('location:on_state_dropdown')
 					.data('country_id', self.element.val())
-					.success(function(raw, data){
+					.success(function(response){
 						if (!self.options.partial)
-							self.stateElement.replaceWith(data);
+							self.stateElement.replaceWith(response.html);
 						
 						self.options.afterUpdate && self.options.afterUpdate(self);
 					});
