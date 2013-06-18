@@ -9,7 +9,7 @@
 ;(function ($, window, document, undefined) {
 
 	$.widget("utility.popup", {
-		version: '2.0.4',
+		version: '2.0.5',
 		options: {
 			onOpen:            null,           // Callback when popup opens
 			onClose:           null,           // Callback when popup closes
@@ -171,7 +171,7 @@
 				$('<form />').phpr().post(self.options.action, { 
 					update: update_object, 
 					data: this.options.partialData,
-					success: function() { 
+					afterUpdate: function() { 
 						$(container_id)
 							.addClass('partial-content-loaded')
 							.attr('rel', self._partial_name);
