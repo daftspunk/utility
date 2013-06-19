@@ -9,7 +9,7 @@
 ;(function ($, window, document, undefined) {
 
 	$.widget("utility.popup", {
-		version: '2.0.5',
+		version: '2.0.6',
 		options: {
 			onOpen:            null,           // Callback when popup opens
 			onClose:           null,           // Callback when popup closes
@@ -176,6 +176,7 @@
 							.addClass('partial-content-loaded')
 							.attr('rel', self._partial_name);
 
+						self._build_close_cross.apply(self);
 						self._partial_loaded = true;
 					}
 				}).send();
