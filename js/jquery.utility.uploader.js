@@ -1,7 +1,7 @@
 ;(function ($, window, document, undefined) {
 
 	$.widget("utility.uploader", {
-		version: '2.0.1',
+		version: '2.0.3',
 		options: { 
 
 			mode: 'single_image',       // Options: single_image|multi_image
@@ -48,16 +48,16 @@
 				this.element.css({ position:'absolute', visibility:'hidden' });
 
 			if (this.options.mode == 'single_image') {
-				this.bind_single_image_upload();
-				this.bind_single_image_remove();
+				this.bindSingleImageUpload();
+				this.bindSingleImageRemove();
 			} else if (this.options.mode == 'multi_image') {
-				this.bind_multi_image_upload();
-				this.bind_multi_image_remove();
+				this.bindMultiImageUpload();
+				this.bindMultiImageRemove();
 			}
 		},
 
 		// Generic helper. Binds the uploader plugin with default properties
-		bind_uploader: function(uploader_options) { var self = this;
+		bindUploader: function(uploader_options) { var self = this;
 
 			uploader_options = $.extend(true, {
 				dataType: 'json',
@@ -67,18 +67,19 @@
 			}, uploader_options);
 
 			// Splice in extraData with form data
-			if (this.options.extraData) {
-				uploader_options.formData = function(form) {
-					if (self.form_data)
-						return self.form_data;
+			uploader_options.formData = function(form) {
+				if (self.form_data)
+					return self.form_data;
 
-					data = form.serializeArray();
+				data = form.serializeArray();
+
+				if (self.options.extraData) {
 					$.each(self.options.extraData, function (name, value) {
 						data.push({name: name, value: value});
 					});
-
-					return self.form_data = data;
 				}
+
+				return self.form_data = data;
 			}
 			
 			if (this.options.onStart)
@@ -90,12 +91,12 @@
 		// Single image
 		// 
 
-		bind_single_image_upload: function() { var self = this;
-			this.bind_uploader({
+		bindSingleImageUpload: function() { var self = this;
+			this.bindUploader({
 				done: function (e, data) {
-					self.add_single_image(data.result.thumb, data.result.id);
+					self.addSingleImage(data.result.thumb, data.result.id);
 					self.options.onSuccess && self.options.onSuccess(self, data);
-					self.options.allowReupload && self.bind_single_image_upload();   
+					self.options.allowReupload && self.bindSingleImageUpload();   
 				},            
 				add: function(e, data) {
 					self.el_image.fadeTo(500, 0);
@@ -112,10 +113,10 @@
 				self.options.existingImgSrc = self.element.data('existing-image');
 
 			if (self.options.existingImgSrc) 
-				self.add_single_image(self.options.existingImgSrc);
+				self.addSingleImage(self.options.existingImgSrc);
 		},
 
-		bind_single_image_remove: function() { var self = this;
+		bindSingleImageRemove: function() { var self = this;
 			if (self.el_remove) {
 				self.el_remove.die('click').live('click', function(){
 
@@ -136,7 +137,7 @@
 			}
 		},
 
-		add_single_image: function(src, id) { var self = this;
+		addSingleImage: function(src, id) { var self = this;
 			var old_src = self.el_image.attr('src');
 			
 			self.el_image.attr('src', src)
@@ -152,12 +153,12 @@
 		// Multiple images
 		// 
 
-		bind_multi_image_upload: function() { var self = this;
-			this.bind_uploader({
+		bindMultiImageUpload: function() { var self = this;
+			this.bindUploader({
 				done: function (e, data) {
-					self.add_multi_image(data.result.thumb, data.result.id);
+					self.addMultiImage(data.result.thumb, data.result.id);
 					self.options.onSuccess && self.options.onSuccess(self, data);
-					self.bind_multi_image_upload();
+					self.bindMultiImageUpload();
 				},            
 				add: function(e, data) {
 					self.el_panel.show().children('ul:first').append('<li class="'+self.options.listItemClass+'">'
@@ -170,7 +171,7 @@
 			}); 
 		},
 
-		bind_multi_image_remove: function() { var self = this;
+		bindMultiImageRemove: function() { var self = this;
 			self.el_panel.find('a.remove').die('click').live('click', function(){
 				var photo = $(this).parent();
 				$(this).closest('li').fadeOut(function() { 
@@ -185,7 +186,7 @@
 			});
 		},
 
-		add_multi_image: function(src, id) { var self = this;
+		addMultiImage: function(src, id) { var self = this;
 			var imageContainer = self.el_panel.find('div.loading:first');
 			var image = $('<img />').attr('src', src).attr('alt', '')
 				.addClass(this.options.imageClass);
