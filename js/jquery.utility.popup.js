@@ -72,8 +72,8 @@
 			}
 
 			// Popup closing
-			this.element.find(this.options.extraClose).off('click.utility.popup')
-				.on('click.utility.popup', function() {
+			this.element.off('click.utility.popup', this.options.extraClose)
+				.on('click.utility.popup', this.options.extraClose, function() {
 					self.closePopup();
 				});
 
